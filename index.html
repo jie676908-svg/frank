@@ -217,9 +217,15 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
    标题、副标题、提示条永远占满整行；卡片默认半宽。
    需要占满的重要卡片（英雄卡、长列表）加 class="card wide"。 */
 @media (min-width:1100px){
-  :root{--fs-hero:56px;--fs-title:30px;--pad:30px;--gap:20px}
-  .side{width:240px}
-  .main{padding:36px 44px 52px}
+  :root{--fs-hero:56px;--fs-title:30px;--pad:26px;--gap:18px}
+  .side{width:228px;padding:28px 16px 22px;border-right:1px solid var(--line)}
+  .brand{padding:0 12px 22px;border-bottom:1px solid var(--line)}
+  .brand .name{font-family:"Songti SC","STSong",serif;font-size:18px;letter-spacing:.08em}
+  .nav{margin-top:6px;gap:5px}
+  .nav button{border:1px solid transparent;border-radius:10px}
+  .nav button:hover{background:rgba(255,255,255,.42);border-color:var(--line);transform:translateX(2px)}
+  .nav button.on{box-shadow:0 7px 18px rgba(69,50,96,.08);border-color:var(--line)}
+  .main{padding:34px 30px 52px}
   .page.on{
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
     gap:var(--gap);align-content:start;
@@ -227,8 +233,42 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
   .page.on > .page-title,
   .page.on > .page-sub,
   .page.on > .banner,
-  .page.on > .card.wide{grid-column:1 / -1}
+  .page.on > .wide{grid-column:1 / -1}
+  .card:hover{border-color:color-mix(in srgb,var(--accent) 34%,var(--line));box-shadow:0 16px 38px rgba(55,41,80,.10)}
+  .stage-hero{min-height:350px}
 }
+
+/* ════════ 电脑专属 WebUI：三栏歌剧院控制台 ════════ */
+.desktop-rail{display:none}
+@media (min-width:1280px){
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 0 72%,rgba(108,90,167,.045));z-index:-1}
+  .main{padding-left:34px;padding-right:34px}
+  .desktop-rail{
+    width:310px;flex:0 0 310px;display:flex;flex-direction:column;gap:14px;
+    padding:34px 24px 32px 0;overflow-y:auto;border-left:1px solid transparent;
+  }
+  .desktop-rail::-webkit-scrollbar{width:5px}.desktop-rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:10px}
+  .desk-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase}
+  .desk-date{font-family:"Songti SC","STSong",serif;font-size:23px;line-height:1.25;margin-top:4px}
+  .desk-day{font-size:12px;color:var(--text-dim);margin-top:3px}
+  .desk-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .desk-panel h3{font-size:13px;font-weight:600;letter-spacing:.04em;margin-bottom:13px;color:var(--text-dim)}
+  .desk-quote{min-height:210px;color:#fff;background-image:var(--stage-overlay),var(--stage-image);background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;border-color:rgba(210,170,98,.5)}
+  .desk-quote p{font-family:"Songti SC","STSong",serif;font-size:16px;line-height:1.8;text-shadow:0 1px 8px rgba(0,0,0,.3)}
+  .desk-quote small{font-size:11px;opacity:.72;margin-top:8px;letter-spacing:.08em}
+  .desk-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .desk-stat{padding:12px 9px;border:1px solid var(--line);border-radius:8px;background:rgba(108,90,167,.045)}
+  .desk-stat b{display:block;font:500 24px/1 var(--mono);color:var(--accent)}
+  .desk-stat span{font-size:11px;color:var(--text-dim)}
+  .desk-agenda{display:grid;gap:7px}
+  .desk-agenda button{display:grid;grid-template-columns:43px 1fr;gap:8px;width:100%;border:0;background:transparent;color:var(--text);font-family:inherit;text-align:left;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .desk-agenda button:last-child{border-bottom:0}.desk-agenda time{font:12px var(--mono);color:var(--accent)}.desk-agenda span{font-size:13px;line-height:1.45}
+  .desk-empty{font-size:12px;color:var(--text-dim);padding:5px 0}
+  .desk-quick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .desk-quick button{border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--text);font-family:inherit;font-size:12px;padding:10px 5px}
+  .desk-quick button:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+}
+@media (min-width:1600px){.desktop-rail{width:340px;flex-basis:340px;padding-right:30px}.main{padding-left:44px;padding-right:44px}}
 
 /* 超宽屏限制内容宽度并居中 —— 一行文字超过 40 个汉字就难读了 */
 @media (min-width:1700px){
@@ -424,6 +464,21 @@ body{background-image:radial-gradient(circle at 88% 4%,rgba(108,90,167,.12),tran
     <!-- ==== 功能：设置 END ==== -->
 
   </main>
+
+  <!-- 电脑宽屏专属：右侧信息台；手机端完全隐藏 -->
+  <aside class="desktop-rail" aria-label="电脑端今日信息台">
+    <div>
+      <div class="desk-kicker">OPERA EPICLESIS · DESK</div>
+      <div class="desk-date" id="deskDate">今日研习</div>
+      <div class="desk-day" id="deskDay"></div>
+    </div>
+    <div class="desk-panel desk-quote" onclick="Home.nextQuote();DesktopUI.render()" role="button" tabindex="0">
+      <p id="deskQuote"></p><small>芙宁娜 · 今日幕间词</small>
+    </div>
+    <div class="desk-panel"><h3>今日仪表</h3><div class="desk-stats" id="deskStats"></div></div>
+    <div class="desk-panel"><h3>今日剧目</h3><div class="desk-agenda" id="deskAgenda"></div></div>
+    <div class="desk-panel"><h3>快速入场</h3><div class="desk-quick"><button onclick="App.go('papers')">📑 研读</button><button onclick="App.go('writing')">✍️ 写作</button><button onclick="App.go('diary')">📓 日记</button><button onclick="App.go('fitness')">❤️ 健康</button></div></div>
+  </aside>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -596,6 +651,7 @@ const Store = (() => {
     _touch(){
       driver.set(NS + '_lastWrite', now());
       if (typeof Sync !== 'undefined' && Sync.on && Sync.on()) Sync.schedule();
+      if (typeof DesktopUI !== 'undefined') setTimeout(() => DesktopUI.render(), 0);
     },
     mergeList,
     /** 把远端整包数据合并进本地。数组型逐条合并，单值取时间新的 */
@@ -733,6 +789,37 @@ const UI = {
   }
 };
 
+/* 电脑端右侧信息台：只读取现有 Store，不创造第二套数据 */
+const DesktopUI = {
+  render(){
+    if (window.innerWidth < 1280) return;
+    const d = new Date();
+    const date = document.getElementById('deskDate'), day = document.getElementById('deskDay');
+    if (date) date.textContent = d.toLocaleDateString('zh-CN',{month:'long',day:'numeric'});
+    if (day) day.textContent = d.toLocaleDateString('zh-CN',{year:'numeric',weekday:'long'}) + ' · 枫丹时间';
+
+    const quote = document.getElementById('deskQuote');
+    if (quote && typeof Home !== 'undefined') quote.textContent = '“' + Home.quotes[Home.qi % Home.quotes.length] + '”';
+
+    const plans = Store.listDaily('plan'), done = plans.filter(x=>x.done).length;
+    const papers = Store.list('papers'), reading = papers.filter(x=>x.status==='在读').length;
+    const books = Store.list('books'), latest = books.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''))[0];
+    const cut = Date.now()-6*864e5, fitness = Store.list('fitness').filter(x=>new Date(x.date).getTime()>=cut);
+    const stats = document.getElementById('deskStats');
+    if (stats) stats.innerHTML = `
+      <div class="desk-stat"><b>${done}/${plans.length}</b><span>计划完成</span></div>
+      <div class="desk-stat"><b>${reading}</b><span>论文在读</span></div>
+      <div class="desk-stat"><b>${latest?Number(latest.progress)||0:0}%</b><span>最近书籍</span></div>
+      <div class="desk-stat"><b>${fitness.length}</b><span>本周训练</span></div>`;
+
+    const agenda = document.getElementById('deskAgenda');
+    if (agenda) agenda.innerHTML = plans.length
+      ? plans.slice().sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99')).slice(0,5).map(x=>
+          `<button onclick="App.go('plan')"><time>${Util.esc(x.time||'待定')}</time><span${x.done?' style="text-decoration:line-through;opacity:.55"':''}>${Util.esc(x.text)}</span></button>`).join('')
+      : '<div class="desk-empty">今日尚未排演，去添加第一项计划。</div>';
+  }
+};
+
 
 /* ═══════════════════════════════════════════════════════════
    App · 路由与启动
@@ -759,6 +846,7 @@ const App = {
     document.getElementById('main').scrollTop = 0;
     Store.set('_lastPage', id);
     this.routes.find(r => r.id === id)?.onShow?.();
+    DesktopUI.render();
   },
 
   init(){
@@ -776,6 +864,7 @@ const App = {
     this.checkBackup();
     if (typeof Sync !== 'undefined') Sync.init();
     PrivacyLock.init();
+    window.addEventListener('resize', () => DesktopUI.render(), {passive:true});
   },
 
   /** 重绘当前页。同步拉到新数据后调用 */
