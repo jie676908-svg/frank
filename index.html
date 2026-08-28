@@ -1029,6 +1029,7 @@ const Settings = {
    3. 推送防抖 —— 改动后等 4 秒再推，把连续操作合并成一次请求。
       勾 10 个待办应该是 1 次调用，不是 10 次。 */
 const Sync = {
+  ENDPOINT: 'https://water-god-sync.jie676908.workers.dev',
   DEBOUNCE: 4000,
   _timer: null,
   _busy: false,
@@ -1039,7 +1040,7 @@ const Sync = {
 
   async call(action, extra = {}){
     const c = this.cfg();
-    const r = await fetch('/api/sync', {
+    const r = await fetch(this.ENDPOINT, {
       method:'POST',
       headers:{ 'content-type':'application/json' },
       body: JSON.stringify(Object.assign({ action, user:c.user, pass:this.pass() }, extra))
