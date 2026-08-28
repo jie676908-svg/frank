@@ -270,6 +270,50 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
 }
 @media (min-width:1600px){.desktop-rail{width:340px;flex-basis:340px;padding-right:30px}.main{padding-left:44px;padding-right:44px}}
 
+/* 手动界面模式：设置页可覆盖自动响应式判断 */
+body[data-layout="mobile"] .desktop-rail{display:none!important}
+body[data-layout="mobile"] .side{width:76px;padding:12px 6px;border-right:0}
+body[data-layout="mobile"] .brand{text-align:center;padding:0;margin-bottom:14px;border-bottom:0}
+body[data-layout="mobile"] .brand .logo{margin:0 auto;font-size:26px}
+body[data-layout="mobile"] .brand .name{font-size:11px;word-break:break-all;letter-spacing:0}
+body[data-layout="mobile"] .nav{gap:4px;margin-top:0}
+body[data-layout="mobile"] .nav button{display:block;text-align:center;padding:10px 2px;font-size:11px;border:0;box-shadow:none}
+body[data-layout="mobile"] .nav button .ico{display:block;font-size:21px;margin:0 0 3px;width:auto}
+body[data-layout="mobile"] .main{padding:14px 12px 28px}
+body[data-layout="mobile"] .page.on{display:flex;grid-template-columns:none;gap:12px}
+body[data-layout="mobile"] .stage-hero{min-height:250px}
+
+/* 强制电脑版会提供真实宽屏画布；小屏可横向浏览，随时可在设置切回 */
+body[data-layout="desktop"]{overflow:auto}
+body[data-layout="desktop"] .app{min-width:1240px}
+body[data-layout="desktop"] .side{width:228px;padding:28px 16px 22px;border-right:1px solid var(--line)}
+body[data-layout="desktop"] .brand{text-align:left;padding:0 12px 22px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+body[data-layout="desktop"] .brand .logo{margin:0;font-size:30px}
+body[data-layout="desktop"] .brand .name{font-family:"Songti SC","STSong",serif;font-size:18px;letter-spacing:.08em;word-break:normal}
+body[data-layout="desktop"] .nav{gap:5px;margin-top:6px}
+body[data-layout="desktop"] .nav button{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;font-size:15px;border:1px solid transparent}
+body[data-layout="desktop"] .nav button .ico{display:inline;font-size:20px;margin:0;width:24px}
+body[data-layout="desktop"] .main{padding:34px;}
+body[data-layout="desktop"] .page.on{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-content:start}
+body[data-layout="desktop"] .page.on>.page-title,body[data-layout="desktop"] .page.on>.page-sub,body[data-layout="desktop"] .page.on>.banner,body[data-layout="desktop"] .page.on>.wide{grid-column:1/-1}
+body[data-layout="desktop"] .desktop-rail{width:310px;flex:0 0 310px;display:flex;flex-direction:column;gap:14px;padding:34px 24px 32px 0;overflow-y:auto}
+
+/* 电脑剧场华丽层：金饰、帷幕与舞台角花，只在电脑版出现 */
+@media (min-width:1280px){
+  body:not([data-layout="mobile"]) .app:before,body[data-layout="desktop"] .app:before{content:"";position:fixed;left:228px;right:310px;top:0;height:6px;z-index:20;background:linear-gradient(90deg,transparent,#d2aa62 18%,#fff2bd 50%,#d2aa62 82%,transparent);opacity:.72}
+  body:not([data-layout="mobile"]) .side:after,body[data-layout="desktop"] .side:after{content:"⚜";margin:auto auto 0;color:#b38b47;font-size:25px;opacity:.62}
+  body:not([data-layout="mobile"]) .stage-hero,body[data-layout="desktop"] .stage-hero{min-height:390px;border:1px solid rgba(210,170,98,.75);box-shadow:0 18px 55px rgba(39,24,62,.2),inset 0 0 0 5px rgba(255,255,255,.08)}
+  body:not([data-layout="mobile"]) .stage-hero:before,body[data-layout="desktop"] .stage-hero:before{content:"✦  OPERA EPICLESIS  ✦";position:absolute;left:50%;top:16px;transform:translateX(-50%);font:10px Georgia,serif;letter-spacing:.24em;color:#f7dda2;text-shadow:0 2px 8px #000;white-space:nowrap}
+  body:not([data-layout="mobile"]) .card,body[data-layout="desktop"] .card{position:relative}
+  body:not([data-layout="mobile"]) .card:before,body[data-layout="desktop"] .card:before{content:"";position:absolute;left:8px;top:8px;width:15px;height:15px;border-left:1px solid rgba(179,139,71,.65);border-top:1px solid rgba(179,139,71,.65);border-radius:2px 0 0}
+  body:not([data-layout="mobile"]) .card:after,body[data-layout="desktop"] .card:after{content:"";position:absolute;right:8px;bottom:8px;width:15px;height:15px;border-right:1px solid rgba(179,139,71,.65);border-bottom:1px solid rgba(179,139,71,.65);border-radius:0 0 2px}
+  body:not([data-layout="mobile"]) .main,body[data-layout="desktop"] .main{background-image:radial-gradient(ellipse at 50% -8%,rgba(210,170,98,.12),transparent 34%),linear-gradient(90deg,rgba(108,90,167,.035),transparent 14%,transparent 86%,rgba(108,90,167,.035))}
+  body:not([data-layout="mobile"]) .desktop-rail,body[data-layout="desktop"] .desktop-rail{background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 60%)}
+}
+.layout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.layout-choice{border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--text);font-family:inherit;padding:13px 8px;font-size:13px}
+.layout-choice b{display:block;font-size:19px;margin-bottom:4px}.layout-choice.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
 /* 超宽屏限制内容宽度并居中 —— 一行文字超过 40 个汉字就难读了 */
 @media (min-width:1700px){
   .main > .page.on{max-width:1400px;margin:0 auto}
@@ -447,6 +491,16 @@ body{background-image:radial-gradient(circle at 88% 4%,rgba(108,90,167,.12),tran
         <p class="hint">皮肤选择保存在当前设备；手机和电脑可以各自选择。</p>
       </div>
       <!-- ==== 功能：主题皮肤 END ==== -->
+
+      <div class="card wide">
+        <h2>🖥️ 界面版本</h2>
+        <div class="layout-grid" id="layoutGrid">
+          <button class="layout-choice" data-layout="auto" onclick="LayoutMode.set('auto')"><b>◫</b>跟随设备</button>
+          <button class="layout-choice" data-layout="mobile" onclick="LayoutMode.set('mobile')"><b>▯</b>手机版</button>
+          <button class="layout-choice" data-layout="desktop" onclick="LayoutMode.set('desktop')"><b>▣</b>电脑版</button>
+        </div>
+        <p class="hint">只影响当前设备。手机强制电脑版时会显示完整宽屏画布，可横向浏览。</p>
+      </div>
 
       <div class="card">
         <h2>⚠️ 危险操作</h2>
@@ -789,10 +843,26 @@ const UI = {
   }
 };
 
+const LayoutMode = {
+  current(){ return Store.get('layoutMode','auto'); },
+  init(){ this.apply(this.current()); },
+  apply(mode){
+    if (mode === 'auto') document.body.removeAttribute('data-layout');
+    else document.body.dataset.layout = mode;
+    document.querySelectorAll('.layout-choice').forEach(b=>b.classList.toggle('on',b.dataset.layout===mode));
+    setTimeout(()=>DesktopUI.render(),0);
+  },
+  set(mode){
+    if (!['auto','mobile','desktop'].includes(mode)) mode='auto';
+    Store.set('layoutMode',mode);this.apply(mode);
+    UI.toast(mode==='auto'?'已跟随设备':mode==='mobile'?'已切换手机版':'已切换电脑版');
+  }
+};
+
 /* 电脑端右侧信息台：只读取现有 Store，不创造第二套数据 */
 const DesktopUI = {
   render(){
-    if (window.innerWidth < 1280) return;
+    if (window.innerWidth < 1280 && document.body.dataset.layout !== 'desktop') return;
     const d = new Date();
     const date = document.getElementById('deskDate'), day = document.getElementById('deskDay');
     if (date) date.textContent = d.toLocaleDateString('zh-CN',{month:'long',day:'numeric'});
@@ -898,6 +968,7 @@ const Settings = {
   render(){
     this.refreshBackupInfo();
     this.renderSync();
+    LayoutMode.apply(LayoutMode.current());
     this.keys.forEach(k => {
       const el = document.getElementById('key_' + k);
       if (el) el.value = Store.getSecret(k) || '';
@@ -1191,6 +1262,7 @@ const PrivacyLock = {
 };
 /* ==== 功能：隐私口令 END ==== */
 Theme.init();
+LayoutMode.init();
 App.init();
 </script>
 </body>
