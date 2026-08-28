@@ -1,0 +1,19 @@
+{
+  "name": "水神剧场",
+  "short_name": "水神剧场",
+  "description": "博士研究、阅读写作、健身与生活管理的私人工作台",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f0f8",
+  "theme_color": "#ece5f3",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
