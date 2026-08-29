@@ -388,7 +388,7 @@ body{background-image:radial-gradient(circle at 88% 4%,rgba(108,90,167,.12),tran
     <!-- ==== 功能：写作进度 END ==== -->
 
     <!-- ==== 功能：日记 START ==== -->
-    <section class="page" id="page-diary"><div class="page-title">日记</div><div class="page-sub">自动保存草稿；内容参与双端同步</div><div class="card wide"><textarea id="diaryText" style="min-height:220px" placeholder="今天发生了什么……" oninput="Diary.draft()"></textarea><div class="row" style="margin-top:10px"><input id="diaryMood" type="text" placeholder="今日心情（可选）"><button class="btn" onclick="Diary.save()">收进日记</button></div><p class="hint" id="diaryDraftState"></p></div><div class="card wide"><h2>📓 往日记录</h2><div id="diaryList"></div></div></section>
+    <section class="page" id="page-diary"><div class="page-title">日记</div><div class="page-sub">自动保存草稿；历史日记可原位编辑；内容参与双端同步</div><div class="card wide"><textarea id="diaryText" style="min-height:220px" placeholder="今天发生了什么……" oninput="Diary.draft()"></textarea><div class="row" style="margin-top:10px"><input id="diaryMood" type="text" placeholder="今日心情（可选）"><button class="btn" onclick="Diary.save()">收进日记</button></div><p class="hint" id="diaryDraftState"></p></div><div class="card wide"><h2>📓 往日记录</h2><p class="hint">点击每篇右侧的“编辑”，即可在原位置修改日期、心情和正文。</p><div id="diaryList"></div></div></section>
     <!-- ==== 功能：日记 END ==== -->
 
     <!-- ==== 功能：读书进度 START ==== -->
