@@ -410,7 +410,7 @@ body{background-image:radial-gradient(circle at 88% 4%,rgba(108,90,167,.12),tran
       <div class="card wide">
         <div id="recapBody"></div>
         <div class="row" style="margin-top:18px">
-          <button class="btn" onclick="Recap.makeCard()">生成图卡</button>
+          <button class="btn" id="recapCardBtn" onclick="Recap.makeCard()">一键生成图卡</button>
         </div>
         <p class="hint">生成一张能存下来的图，想发就发。图上不含你的具体记录内容。</p>
       </div>
@@ -461,7 +461,7 @@ body{background-image:radial-gradient(circle at 88% 4%,rgba(108,90,167,.12),tran
         <div id="syncOn" style="display:none">
           <p class="hint" style="margin-top:0">账号：<b id="syncWho" class="mono"></b><br>上次同步：<span id="syncTime"></span></p>
           <div class="row" style="margin-top:14px">
-            <button class="btn" onclick="Sync.pull(true)">立即同步</button>
+            <button class="btn" id="syncNowBtn" onclick="Sync.syncNow()">立即同步</button>
             <button class="btn ghost" onclick="Settings.changePass()">改密码</button>
             <button class="btn ghost" onclick="Sync.disable()">关闭同步</button>
           </div>
@@ -594,7 +594,9 @@ const Store = (() => {
     },
     set(key, val){
       const ok = driver.set(NS + key, val);
-      if (ok) this._touch();
+      // 下划线开头的是同步状态、备份时间等内部信息。
+      // 它们不能再次触发同步，否则写入 _syncAt 会造成每 4 秒循环推送。
+      if (ok && !key.startsWith('_')) this._touch();
       return ok;
     },
     remove(key){ driver.remove(NS + key); this._touch(); },
@@ -1031,8 +1033,10 @@ const Settings = {
 const Sync = {
   ENDPOINT: 'https://water-god-sync.jie676908.workers.dev',
   DEBOUNCE: 4000,
+  TIMEOUT: 15000,
   _timer: null,
   _busy: false,
+  _pending: false,
 
   cfg(){ return Store.get('_sync', { on:false, user:'' }); },
   on(){ return !!this.cfg().on; },
@@ -1040,14 +1044,22 @@ const Sync = {
 
   async call(action, extra = {}){
     const c = this.cfg();
-    const r = await fetch(this.ENDPOINT, {
-      method:'POST',
-      headers:{ 'content-type':'application/json' },
-      body: JSON.stringify(Object.assign({ action, user:c.user, pass:this.pass() }, extra))
-    });
-    const j = await r.json().catch(() => ({ error:'返回格式不对' }));
-    if (!r.ok) throw new Error(j.error || ('请求失败 ' + r.status));
-    return j;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), this.TIMEOUT);
+    try {
+      const r = await fetch(this.ENDPOINT, {
+        method:'POST',
+        headers:{ 'content-type':'application/json' },
+        body: JSON.stringify(Object.assign({ action, user:c.user, pass:this.pass() }, extra)),
+        signal:ctrl.signal
+      });
+      const j = await r.json().catch(() => ({ error:'返回格式不对' }));
+      if (!r.ok) throw new Error(j.error || ('请求失败 ' + r.status));
+      return j;
+    } catch(e){
+      if (e && e.name === 'AbortError') throw new Error('网络超时，请检查网络后重试');
+      throw e;
+    } finally { clearTimeout(timer); }
   },
 
   /** 开启同步：首次会把这个用户名注册下来 */
@@ -1089,7 +1101,8 @@ const Sync = {
 
   /** 拉取并合并。失败一律静默降级——本地数据才是主的 */
   async pull(loud){
-    if (!this.on() || this._busy) return;
+    if (!this.on()) return;
+    if (this._busy) { if (loud) UI.toast('正在同步，请稍候'); return; }
     this._busy = true;
     this.status('同步中');
     try {
@@ -1102,19 +1115,39 @@ const Sync = {
     } catch(e){
       this.status('未同步');
       if (loud) UI.toast(e.message.includes('NO_ACCOUNT') ? '云端还没有数据' : e.message);
-    } finally { this._busy = false; }
+    } finally { this._busy = false; if(this._pending)this.schedule(); }
+  },
+
+  /** 手动同步：一次 push 同时上传本机数据，并取回服务端合并结果 */
+  async syncNow(){
+    if (!this.on()) return UI.toast('请先开启同步');
+    if (this._busy) return UI.toast('正在同步，请稍候');
+    this._busy = true;this._pending = false;this.status('同步中');this.setButton(true);
+    try {
+      const j = await this.call('push', { data:Store.dump() });
+      const n = Store.mergeRemote(j.data || {});
+      Store.set('_syncAt', Date.now());
+      this.status('已同步');Settings.renderSync();App.refresh();
+      UI.toast(n ? `同步完成，合并 ${n} 处更新` : '同步完成，两端已一致');
+    } catch(e){
+      this.status('未同步');UI.toast(e.message || '同步失败，请稍后重试');
+    } finally {
+      this._busy=false;this.setButton(false);if(this._pending)this.schedule();
+    }
   },
 
   /** 改动后延迟推送，把连续操作合并成一次 */
   schedule(){
     if (!this.on()) return;
+    this._pending = true;
     clearTimeout(this._timer);
     this._timer = setTimeout(() => this.push(), this.DEBOUNCE);
   },
 
   async push(){
-    if (!this.on() || this._busy) return;
-    this._busy = true;
+    if (!this.on()) return;
+    if (this._busy) { this._pending=true; return; }
+    this._busy = true;this._pending=false;
     this.status('同步中');
     try {
       const j = await this.call('push', { data: Store.dump() });
@@ -1124,7 +1157,12 @@ const Sync = {
     } catch(e){
       this.status('未同步');
       console.warn('同步失败，本地数据不受影响：', e.message);
-    } finally { this._busy = false; }
+    } finally { this._busy = false; if(this._pending)this.schedule(); }
+  },
+
+  setButton(busy){
+    const b=document.getElementById('syncNowBtn');
+    if(!b)return;b.disabled=busy;b.textContent=busy?'同步中…':'立即同步';
   },
 
   status(t){
@@ -1173,6 +1211,8 @@ const Recap = {
 
   /** 画一张 1080×1350 的图卡，取当前主题色，右下角轻署名 */
   async makeCard(){
+    const button=document.getElementById('recapCardBtn');
+    if(button){button.disabled=true;button.textContent='生成中…';}
     const r = this.collect();
     const cs = getComputedStyle(document.documentElement);
     const v = n => cs.getPropertyValue(n).trim();
@@ -1227,17 +1267,27 @@ const Recap = {
     g.fillText('由 不一书个人工作台生成器 生成', pad + 56, 1046);
 
     // 导出。iOS 上 download 属性时常无效，所以失败就退回新窗口打开让用户长按保存
-    cv.toBlob(b => {
-      const url = URL.createObjectURL(b);
-      const a = document.createElement('a');
-      a.href = url; a.download = `这一周-${r.to}.png`;
-      a.click();
-      setTimeout(() => {
-        URL.revokeObjectURL(url);
-        UI.toast('图卡已保存到下载目录');
-      }, 800);
+    cv.toBlob(async b => {
+      if(button){button.disabled=false;button.textContent='一键生成图卡';}
+      if(!b)return UI.toast('图卡生成失败，请刷新后重试');
+      const name=`这一周-${r.to}.png`,file=new File([b],name,{type:'image/png'});
+      if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+        try{await navigator.share({files:[file],title:'水神剧场 · 这一周'});return;}
+        catch(e){if(e && e.name==='AbortError')return;}
+      }
+      this.previewCard(b,name);
     }, 'image/png');
-  }
+  },
+
+  previewCard(blob,name){
+    const old=document.getElementById('cardPreview');if(old)old.remove();
+    const url=URL.createObjectURL(blob),box=document.createElement('div');box.id='cardPreview';
+    box.style.cssText='position:fixed;inset:0;z-index:120;background:rgba(10,8,18,.88);padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px';
+    box.innerHTML=`<p style="color:#fff">图卡已生成 · 手机请长按图片保存</p><img src="${url}" alt="本周复盘图卡" style="max-width:min(88vw,540px);max-height:76vh;border-radius:14px"><div class="row"><a class="btn" href="${url}" download="${name}">下载图片</a><button class="btn ghost" style="color:#fff" onclick="Recap.closePreview()">关闭</button></div>`;
+    box.onclick=e=>{if(e.target===box)this.closePreview();};document.body.appendChild(box);this._previewUrl=url;
+  },
+
+  closePreview(){const box=document.getElementById('cardPreview');if(box)box.remove();if(this._previewUrl){URL.revokeObjectURL(this._previewUrl);this._previewUrl='';}}
 };
 /* ==== 功能：周复盘 END ==== */
 
