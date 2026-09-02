@@ -1,0 +1,8 @@
+name = "water-god-sync"
+main = "cloudflare-worker.js"
+compatibility_date = "2026-08-28"
+account_id = "665fd54468eba59622cac2ab7c360371"
+
+[[kv_namespaces]]
+binding = "DASHBOARD_KV"
+id = "9b5a9ba0b94746d795c779f5dc7b72a0"
