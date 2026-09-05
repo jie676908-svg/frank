@@ -380,6 +380,222 @@ body[data-layout="mobile"] .side{background:var(--sidebar)}
   .nav button .ico{width:28px;height:28px;margin:0 auto}
 }
 @media (prefers-reduced-motion:reduce){.nav button::before{transition:none}}
+
+/* ==== Codex × Furina：极简枫丹工作台 ==== */
+:root{
+  --bg:#fff;
+  --sidebar:#fff;
+  --sidebar-text:#111827;
+  --sidebar-active:#000;
+  --card:#fff;
+  --text:#111827;
+  --text-dim:#667085;
+  --accent:#168fbd;
+  --line:#d9dde3;
+  --radius:12px;
+  --shadow:none;
+  --font:"Open Sans","PingFang SC","Noto Sans CJK SC",sans-serif;
+}
+body[data-theme="dawn"]{--bg:#f7fbfc;--sidebar:#fff;--sidebar-text:#102a36;--sidebar-active:#102a36;--card:#fff;--text:#102a36;--text-dim:#52707d;--accent:#087fa7;--line:#cadde4;--shadow:none;--radius:12px}
+body[data-theme="theatre"]{--bg:#0b1020;--sidebar:#080c18;--sidebar-text:#f5f7ff;--sidebar-active:#fff;--card:#11182a;--text:#f7f8fc;--text-dim:#aeb8cb;--accent:#63cdf4;--line:#2c3850;--shadow:none;--radius:12px}
+body{background:var(--bg);background-image:none}
+::selection{background:var(--accent);color:#fff}
+*:focus-visible{outline:2px solid var(--accent)!important;outline-offset:3px}
+
+.side{background:var(--sidebar);border-right:1px solid var(--text)!important}
+.brand{display:flex;align-items:center;gap:11px;text-align:left!important}
+.brand .logo{width:42px!important;height:42px!important;margin:0!important;padding:8px!important;background:transparent!important;border:1px solid var(--text)!important;box-shadow:none!important}
+.brand .name{margin:0!important;font:600 12px/1.35 var(--font)!important;letter-spacing:.12em!important;color:var(--sidebar-text)}
+.brand .name::after{content:"SALON SOLITAIRE";display:block;margin-top:3px;font-size:8px;font-weight:500;letter-spacing:.16em;color:var(--text-dim)}
+.nav-group+.nav-group{border-top:1px solid var(--line)}
+.nav button{border:0!important;border-radius:999px!important;box-shadow:none!important;min-height:44px;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.nav button::before{display:none}
+.nav button:hover{background:color-mix(in srgb,var(--text) 6%,transparent)!important;transform:none!important}
+.nav button.on{background:var(--sidebar-active)!important;color:var(--sidebar)!important;font-weight:600}
+body[data-theme="theatre"] .nav button.on{color:#080c18!important}
+.nav button .ico{width:22px!important;height:22px!important;filter:none!important}
+.nav button.on .ico{filter:grayscale(1) brightness(0) invert(1)!important}
+body[data-theme="theatre"] .nav button.on .ico{filter:grayscale(1) brightness(0)!important}
+.nav-group-label{font:600 10px/1 var(--font);letter-spacing:.12em;color:var(--text-dim)}
+
+.main{background:var(--bg)!important}
+.page.on>*{animation:none}
+.card,.desk-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:none}
+.card:hover{border-color:var(--text)!important;box-shadow:none!important}
+.card::before,.card::after{display:none!important}
+.page-title{font-size:32px;font-weight:650;letter-spacing:-.025em}
+.page-sub{font-size:14px}
+.card h2{font-weight:650}
+.btn{min-height:44px;padding:10px 18px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:600}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--text)}
+.btn:hover{opacity:.82}.btn:disabled{opacity:.4;cursor:not-allowed}
+input,textarea,select{border-color:var(--line);border-radius:10px;background:var(--card)}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+.pill{border-radius:999px;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)}
+.progress{background:var(--line)}.progress i{background:var(--accent)}
+.banner{border-radius:999px;background:var(--text);color:var(--bg);padding:9px 10px 9px 18px}
+.banner button{border-radius:999px;background:var(--bg);color:var(--text)}
+
+/* 首页：行动优先，角色负责陪伴 */
+#page-home{position:relative}
+#page-home .stage-hero{min-height:280px;border:0;border-radius:12px;box-shadow:none;background-image:linear-gradient(90deg,rgba(5,9,19,.9),rgba(5,9,19,.16)),url('furina-stage.webp');background-position:center 24%}
+#page-home .stage-hero>div{width:100%}
+#page-home .stage-hero::before{content:none!important}
+#page-home .stage-hero::after{content:"芙宁娜的今日剧场";right:18px;top:18px;border:1px solid rgba(255,255,255,.72);background:rgba(0,0,0,.42);font-family:var(--font)}
+#page-home .stage-hero h1{font-family:var(--font);font-weight:650;letter-spacing:-.03em}
+#page-home .furina-signature{display:block;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.76)}
+#page-home .stage-quote{border-color:var(--text);font-family:var(--font)}
+.today-action-card{padding:28px;background:var(--text)!important;color:var(--bg);border-color:var(--text)}
+.today-action-caption{margin-top:14px;color:color-mix(in srgb,var(--accent) 76%,white);font:600 11px/1 var(--font);letter-spacing:.08em}
+.today-action-card h2{font-size:16px;color:color-mix(in srgb,var(--bg) 70%,transparent);margin-bottom:14px}
+.today-action-main{max-width:20ch;font-family:var(--font);font-size:30px;font-weight:600;line-height:1.28;letter-spacing:-.025em;color:var(--bg)}
+.today-action-card .btn.ghost{background:var(--bg);border-color:var(--bg);color:var(--text)}
+.overview-title{display:flex;align-items:end;justify-content:space-between;gap:16px}
+
+/* 右侧是唯一的桌面角色舞台 */
+.desktop-rail{border-left:1px solid var(--text)!important;background:var(--bg)!important}
+.desk-caption{margin-top:8px;font-size:10px;font-weight:700;color:var(--text-dim);letter-spacing:.12em}
+.desk-date{font-family:var(--font);font-size:28px;font-weight:650;letter-spacing:-.025em}
+.desk-quote{position:relative;min-height:330px;padding:20px;color:#fff;border:0;background-image:linear-gradient(180deg,transparent 34%,rgba(3,8,18,.9)),url('furina-stage.webp')!important;background-position:58% center!important;background-size:cover;overflow:hidden}
+.desk-quote::before{content:"FURINA";position:absolute;left:18px;top:16px;font:700 11px/1 var(--font);letter-spacing:.18em}
+.desk-quote p{font-family:var(--font);font-size:16px;font-weight:550;line-height:1.65;text-shadow:none}
+.desk-quote small{font-family:var(--font);opacity:.78}
+.desk-panel h3{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
+.desk-stats{grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.desk-stat{border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0;background:transparent;padding:14px 12px}
+.desk-stat b{font-family:var(--font);font-size:25px;font-weight:650;color:var(--text)}
+.desk-agenda button{border-bottom:1px solid var(--line)}
+.desk-agenda time{color:var(--accent)}
+.desk-quick button{min-height:44px;border-color:var(--text);border-radius:999px;background:transparent;color:var(--text)}
+.desk-quick button:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+@media (min-width:1280px){
+  body:not([data-layout="mobile"]) .app::before,body[data-layout="desktop"] .app::before{display:none}
+  body:not([data-layout="mobile"]) .side::after,body[data-layout="desktop"] .side::after{content:"◈";color:var(--accent);font-size:18px;opacity:1}
+  body:not([data-layout="mobile"]) .stage-hero,body[data-layout="desktop"] .stage-hero{display:none}
+  body:not([data-layout="mobile"]) #page-home .stage-quote,body[data-layout="desktop"] #page-home .stage-quote{display:none}
+  body:not([data-layout="mobile"]) #page-home .today-action-card,body[data-layout="desktop"] #page-home .today-action-card{margin-top:0}
+}
+@media (max-width:699px){
+  .side{border-right:1px solid var(--line)!important}
+  .brand{justify-content:center}.brand .name{display:none}
+  #page-home .stage-hero{min-height:310px;align-items:flex-end;background-position:57% center}
+  #page-home .stage-hero h1{font-size:37px}
+  .today-action-main{font-size:25px}
+  .today-action-card{padding:22px}
+  #page-home>.banner{order:-5}
+  #page-home>.today-action-card{order:-4}
+  #page-home>.stage-hero{order:-3}
+  #page-home>.stage-quote{order:-2}
+}
+
+/* ==== 功能：枫丹专注钟 + API 额度 样式 START ==== */
+/* 番茄钟：圆环时钟（conic-gradient 驱动 --pomo-progress） */
+.pomo-clock{
+  --pomo-progress:0%;
+  position:relative;
+  width:170px;height:170px;border-radius:50%;
+  background:
+    conic-gradient(var(--accent) var(--pomo-progress), rgba(128,128,128,.18) var(--pomo-progress) 100%);
+  display:flex;align-items:center;justify-content:center;
+  margin:6px auto 14px;
+  box-shadow:var(--shadow);
+}
+.pomo-clock::before,.pomo-clock::after{
+  content:"";position:absolute;inset:8px;border-radius:50%;
+}
+.pomo-clock::before{background:var(--card)}
+.pomo-clock::after{
+  border:1px dashed rgba(128,128,128,.35);
+  inset:-6px;
+  background:transparent;
+  animation:clock-spin 60s linear infinite;
+}
+.pomo-clock.is-running::after{animation-duration:30s}
+.pomo-clock.tick::after{animation-duration:8s}
+@keyframes clock-spin{to{transform:rotate(360deg)}}
+.pomo-clock-inner{position:relative;text-align:center;color:var(--text)}
+.pomo-time{font-family:var(--mono);font-size:34px;letter-spacing:1px;line-height:1}
+.pomo-state{font-size:var(--fs-meta);color:var(--text-dim);margin-top:6px}
+.pomo-badge{
+  display:inline-block;font-size:12px;
+  background:var(--accent);color:#fff;
+  padding:3px 10px;border-radius:999px;margin-bottom:10px;
+}
+.pomo-tabs{display:flex;gap:6px;margin:10px 0 6px}
+.pomo-tabs button{
+  flex:1;font-size:13px;padding:7px 0;
+  background:transparent;border:1px solid var(--line);
+  border-radius:calc(var(--radius) - 8px);
+  color:var(--text-dim);cursor:pointer;
+}
+.pomo-tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pomo-card .h2,.pomo-card h2{display:flex;align-items:center;gap:8px}
+.pomo-layout{
+  display:flex;gap:24px;align-items:flex-start;justify-content:center;flex-wrap:wrap;
+}
+.pomo-side{flex:1;min-width:220px;max-width:340px}
+@media (max-width:699px){
+  .pomo-layout{flex-direction:column;align-items:center}
+  .pomo-side{max-width:100%}
+}
+.pomo-controls{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pomo-custom{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:var(--fs-meta);color:var(--text-dim)}
+.pomo-custom input{width:64px;text-align:center}
+.pomo-notice{font-size:var(--fs-meta);color:var(--text-dim);margin-top:10px;min-height:18px}
+
+/* 桌面信息台面板 */
+.desk-pomo{padding:14px;border-radius:calc(var(--radius) - 4px);background:rgba(255,255,255,.55)}
+.desk-pomo.active{background:linear-gradient(135deg,rgba(108,90,167,.18),rgba(108,90,167,.06))}
+.desk-pomo.ringing{box-shadow:0 0 0 2px var(--accent) inset}
+.desk-pomo-time{font-family:var(--mono);font-size:30px;letter-spacing:1px}
+.desk-pomo-label{font-size:var(--fs-meta);color:var(--text-dim);margin-top:4px}
+.desk-pomo-message{font-size:14px;line-height:1.5;color:var(--text)}
+.desk-pomo-ack{margin-top:10px}
+
+/* API 额度 */
+.api-card{
+  background:rgba(255,255,255,.5);
+  border:1px solid var(--line);
+  border-radius:calc(var(--radius) - 4px);
+  padding:12px 14px;
+  margin-bottom:10px;
+}
+.api-card-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}
+.api-card-head b{font-size:14px;color:var(--accent)}
+.api-card-head span{flex:1}
+.api-card-head button{background:transparent;border:none;color:var(--text-dim);font-size:12px;cursor:pointer;padding:4px}
+.api-card-body{display:flex;align-items:center;gap:14px;margin-top:8px}
+.quota-ring{
+  --quota:0%;
+  width:62px;height:62px;border-radius:50%;
+  background:
+    conic-gradient(var(--accent) var(--quota), rgba(128,128,128,.18) var(--quota) 100%);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  position:relative;
+}
+.quota-ring::before{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--card)}
+.quota-ring span{position:relative;font-family:var(--mono);font-size:13px;color:var(--text)}
+.api-card-data{display:flex;flex-direction:column;gap:2px;min-width:0}
+.api-card-data strong{font-family:var(--mono);font-size:18px;color:var(--text)}
+.api-card-data small{font-size:var(--fs-meta);color:var(--text-dim)}
+.quota-head{display:flex;justify-content:space-between;font-size:var(--fs-meta);color:var(--text-dim);margin-bottom:4px}
+.quota-head .quota-name{color:var(--text)}
+.quota-head .quota-value{font-family:var(--mono)}
+.quota-bar{height:6px;border-radius:99px;background:rgba(128,128,128,.18);overflow:hidden}
+.quota-bar i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.quota-sub{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+@media (max-width:639px){
+  .pomo-clock{width:160px;height:160px}
+  .api-card-body{flex-direction:column;align-items:flex-start}
+}
+@media (min-width:1024px){
+  .pomo-clock{width:200px;height:200px}
+  .pomo-clock .pomo-time{font-size:42px}
+}
+/* ==== 功能：枫丹专注钟 + API 额度 样式 END ==== */
 </style>
 </head>
 <body>
@@ -395,6 +611,13 @@ body[data-layout="mobile"] .side{background:var(--sidebar)}
     <nav class="nav" id="nav">
       <!-- 由 App.routes 自动渲染 -->
     </nav>
+    <!-- ==== 功能：枫丹专注钟 侧栏小工具 START ==== -->
+    <div class="side-pomo" id="sidePomo" onclick="App.go('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();App.go('home')}" role="button" tabindex="0" aria-label="枫丹专注钟">
+      <div class="side-pomo-head">⏳ 枫丹专注钟</div>
+      <div class="side-pomo-time mono ref-pomo-time" id="sidePomoTime">--:--</div>
+      <div class="side-pomo-state ref-pomo-state" id="sidePomoState">准备开始</div>
+    </div>
+    <!-- ==== 功能：枫丹专注钟 侧栏小工具 END ==== -->
   </aside>
   <!-- ==== 侧边栏 END ==== -->
 
@@ -402,14 +625,46 @@ body[data-layout="mobile"] .side{background:var(--sidebar)}
 
     <!-- ==== 功能：剧场主页 START ==== -->
     <section class="page" id="page-home">
-      <div class="stage-hero wide"><div><span class="pill" style="color:#fff;background:rgba(255,255,255,.16)">✦ FONTAINE · 今日开幕</span><h1 class="hero">水神剧场</h1><p>让阅读、写作与训练，都成为今日值得记录的一幕。</p></div></div>
-      <div class="card stage-quote wide" onclick="Home.nextQuote()" role="button" tabindex="0"><p id="homeQuote"></p><small>芙宁娜 · 点击切换台词</small></div>
-      <div class="card wide today-action-card"><div class="today-action-kicker">TODAY'S NEXT SCENE</div><h2>今天先推进哪一幕？</h2><div id="homeNextAction"><div class="today-action-main">先定下今天最重要的一件事。</div></div><button class="btn ghost" style="margin-top:14px" onclick="App.go('plan')">打开今日计划</button></div>
+      <div class="stage-hero wide"><div><h1 class="hero">水神剧场</h1><p>让阅读、写作与训练，都成为今日值得记录的一幕。</p><small class="furina-signature">芙宁娜 · 今日剧场</small></div></div>
+      <div class="card stage-quote wide" onclick="Home.nextQuote()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();Home.nextQuote()}" role="button" tabindex="0"><p id="homeQuote"></p><small>芙宁娜 · 点击切换台词</small></div>
+      <div class="card wide today-action-card"><h2>今天最重要的一幕</h2><div id="homeNextAction"><div class="today-action-main">先定下今天最重要的一件事。</div></div><div class="today-action-caption">由芙宁娜为今天揭幕</div><button class="btn ghost" style="margin-top:18px" onclick="App.go('plan')">安排今日计划</button></div>
       <div class="page-title">今日总览</div><div class="page-sub">四个最重要的舞台，一眼看到进度</div>
-      <div class="card" onclick="App.go('papers')" role="button" tabindex="0"><h2>📑 论文研读 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homePapers"></div></div>
-      <div class="card" onclick="App.go('books')" role="button" tabindex="0"><h2>📚 阅读书籍 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homeBooks"></div></div>
-      <div class="card" onclick="App.go('plan')" role="button" tabindex="0"><h2>📅 今日计划 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homePlan"></div></div>
-      <div class="card" onclick="App.go('fitness')" role="button" tabindex="0"><h2>🏋️ 健身记录 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homeFitness"></div></div>
+      <div class="card" onclick="App.go('papers')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('papers')" role="button" tabindex="0"><h2>论文研读 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homePapers"></div></div>
+      <div class="card" onclick="App.go('books')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('books')" role="button" tabindex="0"><h2>阅读书籍 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homeBooks"></div></div>
+      <div class="card" onclick="App.go('plan')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('plan')" role="button" tabindex="0"><h2>今日计划 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homePlan"></div></div>
+      <div class="card" onclick="App.go('fitness')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('fitness')" role="button" tabindex="0"><h2>健身记录 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homeFitness"></div></div>
+
+      <!-- ==== 功能：枫丹专注钟 START ==== -->
+      <div class="card wide pomo-card">
+        <h2>⏳ 枫丹专注钟 <span class="pill ref-clock" id="pomoBadge" style="margin-left:auto">专注</span></h2>
+        <div class="pomo-layout">
+          <div class="pomo-clock ref-clock" id="pomoClock" style="--pomo-progress:0%">
+            <div class="pomo-clock-inner">
+              <div class="pomo-time mono" id="pomoTime">25:00</div>
+              <div class="pomo-state" id="pomoState">准备开始</div>
+            </div>
+          </div>
+          <div class="pomo-side">
+            <div class="pomo-tabs">
+              <button data-pomo="focus" onclick="Pomodoro.choose('focus')">专注 25</button>
+              <button data-pomo="short" onclick="Pomodoro.choose('short')">短休 5</button>
+              <button data-pomo="long" onclick="Pomodoro.choose('long')">长休 15</button>
+            </div>
+            <div class="pomo-custom">
+              <span>自定义分钟</span>
+              <input type="number" id="pomoMinutes" min="1" max="180" value="25">
+            </div>
+            <div class="pomo-controls">
+              <button class="btn" id="pomoStart" onclick="Pomodoro.start()">开始专注</button>
+              <button class="btn ghost" onclick="Pomodoro.pause()">暂停</button>
+              <button class="btn ghost" onclick="Pomodoro.reset()">重置</button>
+            </div>
+            <div class="pomo-notice" id="pomoNotice"></div>
+            <button class="btn ghost" style="margin-top:6px" onclick="Pomodoro.testAlert()">测试铃声与通知</button>
+          </div>
+        </div>
+      </div>
+      <!-- ==== 功能：枫丹专注钟 END ==== -->
     </section>
     <!-- ==== 功能：剧场主页 END ==== -->
 
@@ -482,6 +737,25 @@ body[data-layout="mobile"] .side{background:var(--sidebar)}
         <input type="file" id="importFile" accept=".json" style="display:none" onchange="Store.importFile(this)">
         <p class="hint" id="backupInfo"></p>
       </div>
+
+      <!-- ==== 功能：API 额度 密钥卡 START ==== -->
+      <div class="card wide">
+        <h2>🔑 AI 服务额度查询</h2>
+        <p class="hint" style="margin-top:0;margin-bottom:12px">
+          在此填入 DeepSeek 与 MiniMax 的 API Key，工作台会调用官方接口查询余额与剩余额度。<br>
+          密钥仅保存在当前设备的 localStorage 中，不参与云端同步。<br>
+          余额与剩余次数展示在右侧「API 额度」面板里。
+        </p>
+        <div style="margin-top:8px"><input type="password" id="deepseekQuotaKey" placeholder="DeepSeek API Key（sk-…）" autocomplete="off"></div>
+        <div style="margin-top:10px"><input type="password" id="minimaxQuotaKey" placeholder="MiniMax API Key" autocomplete="off"></div>
+        <div class="row" style="margin-top:14px">
+          <button class="btn" onclick="ApiQuota.saveKeys()">保存并查询</button>
+          <button class="btn ghost" onclick="ApiQuota.refresh(true)">立即刷新</button>
+          <button class="btn ghost" onclick="ApiQuota.clearKeys()">清除密钥</button>
+        </div>
+        <p class="hint" id="quotaSettingsState">尚未配置</p>
+      </div>
+      <!-- ==== 功能：API 额度 密钥卡 END ==== -->
 
       <!-- ==== 双端同步卡片 START ====（用户选单设备时删掉这张卡） -->
       <div class="card wide" id="syncCard">
@@ -569,16 +843,37 @@ body[data-layout="mobile"] .side{background:var(--sidebar)}
   <!-- 电脑宽屏专属：右侧信息台；手机端完全隐藏 -->
   <aside class="desktop-rail" aria-label="电脑端今日信息台">
     <div>
-      <div class="desk-kicker">OPERA EPICLESIS · DESK</div>
       <div class="desk-date" id="deskDate">今日研习</div>
       <div class="desk-day" id="deskDay"></div>
+      <div class="desk-caption">FONTAINE · SALON SOLITAIRE</div>
     </div>
-    <div class="desk-panel desk-quote" onclick="Home.nextQuote();DesktopUI.render()" role="button" tabindex="0">
+    <div class="desk-panel desk-quote" onclick="Home.nextQuote();DesktopUI.render()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();Home.nextQuote();DesktopUI.render()}" role="button" tabindex="0">
       <p id="deskQuote"></p><small>芙宁娜 · 今日幕间词</small>
     </div>
     <div class="desk-panel"><h3>今日仪表</h3><div class="desk-stats" id="deskStats"></div></div>
     <div class="desk-panel"><h3>今日剧目</h3><div class="desk-agenda" id="deskAgenda"></div></div>
-    <div class="desk-panel"><h3>快速入场</h3><div class="desk-quick"><button onclick="App.go('papers')">📑 研读</button><button onclick="App.go('writing')">✍️ 写作</button><button onclick="App.go('diary')">📓 日记</button><button onclick="App.go('fitness')">❤️ 健康</button></div></div>
+
+    <!-- ==== 功能：枫丹专注钟 桌面台面板 START ==== -->
+    <div class="desk-panel desk-pomo" id="deskPomo">
+      <h3>枫丹专注钟</h3>
+      <div class="desk-pomo-body" id="deskPomoBody">
+        <div class="desk-pomo-time mono">--:--</div>
+        <div class="desk-pomo-label">尚未开始</div>
+      </div>
+      <button class="btn ghost desk-pomo-ack" id="deskPomoAck" style="display:none" onclick="Pomodoro.acknowledge()">确认</button>
+    </div>
+    <!-- ==== 功能：枫丹专注钟 桌面台面板 END ==== -->
+
+    <!-- ==== 功能：API 额度 START ==== -->
+    <div class="desk-panel">
+      <h3>API 额度</h3>
+      <div id="apiQuotaRail">
+        <p class="hint" style="margin:6px 0 0">尚未配置密钥，请到设置中填写。</p>
+      </div>
+    </div>
+    <!-- ==== 功能：API 额度 END ==== -->
+
+    <div class="desk-panel"><h3>快速入场</h3><div class="desk-quick"><button onclick="App.go('papers')">研读</button><button onclick="App.go('writing')">写作</button><button onclick="App.go('diary')">日记</button><button onclick="App.go('fitness')">健康</button></div></div>
   </aside>
 </div>
 
@@ -988,6 +1283,8 @@ const App = {
     this.checkBackup();
     if (typeof Sync !== 'undefined') Sync.init();
     PrivacyLock.init();
+    Pomodoro.init();
+    ApiQuota.init();
     window.addEventListener('resize', () => DesktopUI.render(), {passive:true});
   },
 
@@ -1306,6 +1603,8 @@ const Recap = {
 <script src="features/健身记录.js"></script>
 <script src="features/健康打卡.js"></script>
 <script src="features/主题皮肤.js"></script>
+<script src="features/番茄钟.js"></script>
+<script src="features/API额度.js"></script>
 <script>
 /* ==== 功能：隐私口令 START ==== */
 const PrivacyLock = {
