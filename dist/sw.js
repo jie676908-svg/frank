@@ -1,4 +1,4 @@
-const CACHE = 'water-god-theatre-v13';
+const CACHE = 'water-god-theatre-v14';
 const ASSETS = [
   './', './index.html', './manifest.json', './icon.png',
   './furina-stage.webp', './furina-morning.webp', './furina-theatre.webp', './furina-reference-stage.png',

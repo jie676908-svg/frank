@@ -11,13 +11,15 @@ const Fitness = {
   /* 快捷设置记录日期：0=今天，-1=昨天 */
   setDate(offset){
     const d=new Date();d.setDate(d.getDate()+offset);
-    document.getElementById('fitnessDate').value=Util.dateOf(d);
+    const dateEl=document.getElementById('fitnessDate');
+    if(dateEl)dateEl.value=Util.dateOf(d);
   },
   add(){
     const type=document.getElementById('fitnessType').value.trim(),
       minutes=Number(document.getElementById('fitnessMinutes').value||0),
       note=document.getElementById('fitnessNote').value.trim(),
-      date=document.getElementById('fitnessDate').value||Util.today();
+      // 当前表单默认记录当天；日期字段只在带“补记”入口的界面中存在。
+      date=document.getElementById('fitnessDate')?.value||Util.today();
     if(!type||minutes<1)return UI.toast('填写训练项目和时长');
     if(date>Util.today())return UI.toast('不能记录未来的训练');
     Store.upsert('fitness',{type,minutes,note,date});
