@@ -1,26 +1,28 @@
 /* ==== 功能：主题皮肤 START ==== */
 const Theme = {
-  allowed:['fontaine','pearl','dawn','theatre'],
-  current(){const v=Store.get('theme','fontaine');return this.allowed.includes(v)?v:'fontaine';},
+  allowed:['dawn'],
+  names:{dawn:'清透水晶',pearl:'白金歌剧院',theatre:'深蓝夜场'},
+  current(){return 'dawn';},
   init(){
-    if(!Store.get('_referenceExactV15')){const p=Store.get('_pomodoro',{});if(!p.running)Store.set('_pomodoro',{mode:'focus',duration:1500,remaining:1500,endAt:0,running:false});Store.set('stageDesign','archive');Store.set('_referenceExactV15',Date.now());}
-    if(!Store.get('_referenceLayoutV4')){
-      Store.set('theme','pearl');Store.set('scene','opera');Store.set('furinaImage',0);Store.set('_lastPage','home');Store.set('sidebarStyle','glass');Store.set('_referenceLayoutV4',Date.now());
-      const p=Store.get('_pomodoro',{});if(!p.running)Store.set('_pomodoro',{mode:'focus',duration:1500,remaining:1500,endAt:0,running:false});
-    }
-    if(!Store.get('_fontaineExactV3')){
-      Store.set('theme','pearl');Store.set('scene','opera');Store.set('furinaImage',0);Store.set('_lastPage','home');Store.set('_fontaineExactV3',Date.now());
-    }
-    if(!Store.get('_fontaineStyleV2')){
-      Store.set('theme','pearl');
-      Store.set('sidebarStyle','glass');
-      Store.set('scene','opera');
-      Store.set('_fontaineStyleV2',Date.now());
-    }
-    this.apply(this.current());Scene.init();FurinaGallery.init();SidebarStyle.init();StageDesign.init();
+    // Only read visual preferences here. Legacy reference migrations used to reset
+    // the theme, current page and timer on first visit; a skin must not change them.
+    Scene.init();FurinaGallery.init();SidebarStyle.init();StageDesign.init();
+    this.apply(this.current());
   },
-  apply(name){document.body.dataset.theme=name;document.querySelectorAll('.theme-choice').forEach(x=>x.classList.toggle('on',x.dataset.theme===name));},
-  set(name){if(!this.allowed.includes(name))return;Store.set('theme',name);this.apply(name);UI.toast('已切换主题');}
+  apply(name){
+    if(!this.allowed.includes(name))name='dawn';
+    document.body.dataset.theme=name;
+    document.querySelectorAll('.theme-choice').forEach(x=>{
+      const active=x.dataset.theme===name;
+      x.classList.toggle('on',active);x.setAttribute('aria-pressed',String(active));
+      const status=x.querySelector('.theme-selected');if(status)status.textContent=active?'正在使用':'使用此主题';
+    });
+    const select=document.getElementById('themeSelect');if(select)select.value=name;
+    const meta=document.querySelector('meta[name="theme-color"]');
+    if(meta)meta.content={dawn:'#edf5ff',pearl:'#faf7f0',theatre:'#071225'}[name];
+    if(typeof Home!=='undefined')Home.applyImage();
+  },
+  set(name){if(!this.allowed.includes(name))return;Store.set('theme',name);this.apply(name);UI.toast('已切换为'+this.names[name]);}
 };
 
 const Scene = {

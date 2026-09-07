@@ -1,0 +1,339 @@
+/* 清透水晶 — desktop geometry measured from the approved 1536 × 1024 design. */
+body.furina-themes {
+ --bg:#edf3fc;--card:rgba(248,251,255,.94);--surface:#f0f5ff;--text:#123784;--text-dim:#6279a6;--accent:#4779e0;--accent-2:#80a7ee;--gold:#c8ac73;--gold-light:#eadcc1;--line:#cbd8ed;--line-gold:#d7c6a4;--sidebar:#eef4fe;--sidebar-text:#1c428e;--sidebar-active:#91afe9;--radius:13px;--gap:14px;--pad:20px;--shadow:none;--shadow-lg:none;
+ --font-serif:"Songti SC","STSong","Noto Serif SC",serif;--font:"Songti SC","STSong","Noto Serif SC",serif;
+ --primary-height:374px;--secondary-height:305px;
+ color:var(--text);color-scheme:light;background:#edf3fc;font-family:var(--font);caret-color:var(--accent);
+ background-image:linear-gradient(115deg,#e9f2fbcf,#f7f9ffc9 48%,#e4effbbf),url('assets/plates/banner.png');background-size:cover;background-position:center bottom;
+}
+body.furina-themes[data-theme="dawn"] {--bg:#edf3fc;--card:rgba(248,251,255,.94);--text:#123784;--text-dim:#6279a6;--accent:#4779e0;--accent-2:#80a7ee;--gold:#c8ac73;--gold-light:#eadcc1;--line:#cbd8ed;--sidebar:#eef4fe;--sidebar-text:#1c428e;--sidebar-active:#91afe9}
+body.furina-themes::before,body.furina-themes::after,.furina-themes .main::before,.furina-themes .main::after,.furina-themes .lift-ambient {display:none!important}
+.furina-themes .page.on>* {animation:none}
+.furina-themes .side {position:relative;width:198px;padding:12px 10px 20px;flex-shrink:0;overflow-x:hidden;background:linear-gradient(180deg,#f7fbffdb,#eaf2fbdf);border:0;box-shadow:4px 0 15px #5579b510;color:var(--text)}
+.furina-themes .side::before,.furina-themes .side::after {display:none}
+.furina-themes .side-frame {inset:2px 5px 15px;border:1px solid #c2cee0;border-radius:16px;box-shadow:inset 0 0 0 3px #fff9}
+.furina-themes .side-frame::before {inset:4px;border:1px solid #deceb0;border-radius:12px}
+.furina-themes .sf-c {width:24px;height:24px;color:#d4bd91;filter:none}
+.furina-themes .sf-d {display:none}
+.furina-themes .brand {display:flex;flex-direction:column;align-items:center;gap:0;padding:6px 0 22px;margin:0;border:none}
+.furina-themes .brand-name {font-size:26px;letter-spacing:0;color:#123784;font-family:var(--font-serif);font-weight:700;text-shadow:none;line-height:1.2}
+.furina-themes .brand-sub {font-family:var(--font);font-size:13px;letter-spacing:.06em;color:#5474ad;margin-top:5px}
+.furina-themes .brand::before {content:'';display:block;width:50px;height:54px;background:url('assets/themes/crystal-emblem.svg') center/46px no-repeat;margin-bottom:6px;filter:sepia(1) saturate(.7);opacity:.85}
+.furina-themes .brand .logo {display:none}
+.furina-themes .nav {position:relative;z-index:1;gap:5px;padding-top:6px}
+.furina-themes .nav button {display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:14px;padding:10px 16px;font-family:var(--font);font-size:18px;letter-spacing:.015em;min-height:50px;line-height:1.3;border:1px solid transparent;border-radius:9px;color:#204591;background:transparent;box-shadow:none;white-space:nowrap;transition:all .18s}
+.furina-themes .nav button.on {background:linear-gradient(110deg,#4c74b9,#587fc3);border-color:#8faee3;color:#fff;box-shadow:inset 0 0 0 2px #ffffff26,0 2px 4px rgba(76,116,185,.18)}
+.furina-themes .nav button:hover {transform:none;background:#dce8fd;color:#1d4090}
+.furina-themes .nav button.on:hover {background:#466cb0}
+.furina-themes .nav button::before {display:none}
+.furina-themes .nav svg {width:22px;height:22px;flex-shrink:0;color:inherit;filter:none;transition:transform .18s}
+.furina-themes .nav button:hover svg{transform:scale(1.08)}
+.furina-themes .nav-label {display:block}
+.furina-themes .side-emblem {margin-top:auto;min-height:130px;position:relative;display:flex;flex-direction:column;align-items:center;gap:0;padding:24px 0 30px;animation:none;filter:none;border-top:1px solid #d6c89c;background:linear-gradient(180deg,transparent,rgba(212,189,145,.06))}
+.furina-themes .side-emblem img,.furina-themes .emblem-ring {display:none}
+.furina-themes .side-emblem::before {content:'';height:24px;width:130px;background:url('assets/themes/crystal-trim.svg') center/contain no-repeat;opacity:.9;margin-bottom:6px}
+.furina-themes .side-emblem::after {content:'F U R I N A\A — 芙 宁 娜 —';white-space:pre;text-align:center;font-family:var(--font-serif);font-size:16px;line-height:1.65;letter-spacing:.22em;color:#5e7aab;font-weight:600}
+.furina-themes .main {padding:0 24px 30px 16px;background:transparent;position:relative}
+.furina-themes #page-home.on {display:flex;flex-direction:column;gap:0;max-width:none;margin:0}
+.furina-themes .crystal-head {height:90px;display:flex;gap:35px;align-items:center;padding:0 32px;position:relative;z-index:3;flex-shrink:0}
+.furina-themes .crystal-head h1 {font-family:var(--font-serif);font-size:40px;line-height:1.15;font-weight:700;letter-spacing:.04em;white-space:nowrap;color:#153b88}
+.furina-themes .crystal-head time {font-size:19px;white-space:nowrap;color:#213c73}
+.furina-themes .sync-button {display:flex;align-items:center;gap:7px;background:#f4f8ffc9;border:1px solid #abc4ef;border-radius:7px;padding:7px 12px;font:16px var(--font);color:#2455af;cursor:pointer;min-height:36px}
+.furina-themes .sync-button svg {width:18px;height:18px}
+.furina-themes .crystal-welcome {position:relative;height:192px;flex-shrink:0;margin:0 0 15px;border:1px solid #d1bc93;border-radius:12px;isolation:auto;background:#eff5fc}
+.furina-themes .crystal-welcome::after {content:'';position:absolute;inset:4px;border:1px solid #e6d6b6;border-radius:8px;pointer-events:none;z-index:2}
+.furina-themes .crystal-banner-art {position:absolute;right:0;bottom:0;width:100%;height:282px;object-fit:cover;object-position:50% 38%;border-radius:0 0 12px 12px;pointer-events:none}
+.furina-themes .crystal-welcome::before {content:'';position:absolute;inset:-90px 46% 0 0;background:linear-gradient(90deg,#f5f8fff2,#f5f8ffb3 62%,transparent);z-index:1;pointer-events:none}
+.furina-themes .welcome-copy {position:relative;z-index:2;padding:44px 52px;color:#173e86;width:46%}
+.furina-themes .welcome-copy h2 {font-family:var(--font-serif);font-size:32px;font-weight:700;line-height:1.2;margin-bottom:12px;letter-spacing:.06em}
+.furina-themes .welcome-copy p {font-size:18px;line-height:1.55;color:#38578c}
+.furina-themes .flourish {display:flex;justify-content:center;align-items:center;gap:8px;color:#c6ac79;font-size:18px;line-height:1;margin-top:10px}
+.furina-themes .flourish::before,.furina-themes .flourish::after {content:'';height:1px;width:34px;background:currentColor;opacity:.8}
+.furina-themes .welcome-copy .flourish {width:225px;color:#92acd6;font-size:12px;margin-top:8px}
+.furina-themes .dash {display:grid;grid-template-columns:repeat(100,minmax(0,1fr));grid-template-rows:var(--primary-height) var(--secondary-height);gap:14px 0;align-items:stretch;min-width:0}
+.furina-themes .card {position:relative;background:var(--card);border:1px solid #b8cbe7;border-radius:13px;padding:18px 18px;box-shadow:0 3px 8px #5776a212;backdrop-filter:none;min-width:0;color:var(--text);overflow:visible}
+.furina-themes .card::before {content:'';position:absolute;inset:3px;width:auto;height:auto;border:1px solid #dfd0b0;border-radius:10px;pointer-events:none;background:none;opacity:.85}
+.furina-themes .card::after {display:none}
+.furina-themes .card:hover {border-color:#abc2e4;box-shadow:0 3px 8px #5776a212}
+.furina-themes .card h2 {display:flex;align-items:center;gap:8px;font-family:var(--font-serif);font-size:21px;font-weight:600;letter-spacing:.03em;line-height:1.25;margin:0 0 16px;color:#123b89;white-space:nowrap}
+.furina-themes .card h2 svg {width:22px;height:22px;flex-shrink:0}
+.furina-themes .hlink {margin-left:auto;min-height:28px;padding:3px 10px;border:1px solid #cddcf2;border-radius:20px;font:13px var(--font);color:#4263a1;background:transparent;white-space:nowrap;cursor:pointer}
+.furina-themes .dash-plan {grid-column:1/39;grid-row:1;margin-right:12px;display:flex;flex-direction:column;padding:18px 15px 20px}
+.furina-themes .dash-pomo {grid-column:39/69;grid-row:1;margin-right:12px;padding:18px 24px 16px;display:flex;flex-direction:column;align-items:center}
+.furina-themes .dash-hero {grid-column:69/101;grid-row:1;min-height:0;padding:5px 10px 6px;background:var(--card);display:flex;flex-direction:column;align-items:stretch;border-radius:13px;overflow:hidden;cursor:default}
+.furina-themes .dash-projects {grid-column:1/25;grid-row:2;margin-right:12px}
+.furina-themes .dash-stats {grid-column:25/57;grid-row:2;margin-right:12px;display:flex;flex-direction:column;padding:18px 18px 16px}
+.furina-themes .dash-api {grid-column:57/79;grid-row:2;margin-right:12px;display:flex;flex-direction:column}
+.furina-themes .dash-remind {grid-column:79/101;grid-row:2;display:flex;flex-direction:column;padding:18px 16px}
+.furina-themes #dashPlanList {flex:1;min-height:0;overflow:auto;scrollbar-width:thin;display:flex;flex-direction:column;gap:8px}
+.furina-themes .dp-row {display:flex;align-items:center;gap:12px;width:100%;flex-shrink:0;min-height:74px;padding:10px 14px;border:1px solid #d5e0f1;border-radius:10px;background:#f8fbff75;color:#163b89;font:16px var(--font);text-align:left;cursor:pointer}
+.furina-themes .dp-row:hover {background:#eaf1ff}
+.furina-themes .dp-check {width:22px;height:22px;border:1px solid #b5c8e8;border-radius:4px;flex-shrink:0;background:transparent;color:#fff}
+.furina-themes .dp-row.done .dp-check {background:#5785df;border-color:#5785df}
+.furina-themes .dp-task-icon {display:grid;place-items:center;width:46px;height:46px;background:linear-gradient(135deg,#3970e9,#a1b9ed);border-radius:50%;color:white;flex-shrink:0;box-shadow:inset 0 0 0 1px #96b4e9}
+.furina-themes .dp-task-icon svg {width:26px;height:26px}
+.furina-themes .dp-copy {min-width:0;flex:1;display:flex;flex-direction:column;gap:5px}
+.furina-themes .dp-name {font-size:17px;line-height:1.35;overflow-wrap:anywhere}
+.furina-themes .dp-detail {font-size:13px;line-height:1.4;color:#6c80a5;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.furina-themes .dp-row time {color:#6b7e9f;font:12px var(--font);white-space:nowrap;flex-shrink:0;max-width:96px}
+.furina-themes .dp-row.done .dp-name {color:#7b88a3;text-decoration:line-through}
+.furina-themes .dash-plan-foot {margin-top:16px;padding:0 8px 1px;border:0;display:flex;justify-content:space-between;gap:8px;color:#17479d;font-size:14px;min-height:25px}
+.furina-themes .clear-plan {background:none;border:0;font:13px var(--font);color:#5b7eba;cursor:pointer;padding:5px}
+.furina-themes .dash-pomo>h2 {align-self:stretch;margin:0 0 10px}
+.furina-themes .pomo-options {position:absolute;right:18px;top:19px;font-size:13px;z-index:8;text-align:left}
+.furina-themes .pomo-options summary {list-style:none;cursor:pointer;color:#4a659f;min-height:26px}
+.furina-themes .pomo-options summary::-webkit-details-marker {display:none}
+.furina-themes .pomo-options-panel {position:absolute;right:0;top:30px;display:flex;flex-direction:column;gap:8px;width:220px;padding:16px;border:1px solid #b6cceb;border-radius:10px;background:#f8fbff;box-shadow:0 10px 24px #34589324;font-size:13px}
+.furina-themes .pomo-dial-wrap {position:relative;width:min(246px,100%);height:auto;aspect-ratio:1;margin:0 auto -2px;flex-shrink:1;min-height:0;border:1px solid #cbb07b;border-radius:50%;box-shadow:inset 0 0 0 5px #fcfdff,inset 0 0 0 6px #d5be91;background:radial-gradient(circle,#729ae9 0,#527cdb 63%,#edf4ff 64%)}
+.furina-themes .pomo-dial {inset:0;z-index:2;pointer-events:none}
+.furina-themes .pomo-dial .tkn,.furina-themes .pomo-dial .tk:not(.major) {display:none}
+.furina-themes .pomo-dial .tk.major {stroke:#c6a970;stroke-width:1.5}
+.furina-themes .pomo-track {stroke:#fff9;stroke-width:1;fill:none}
+.furina-themes .pomo-arc {stroke:#f5d590;stroke-width:2.5;fill:none}
+.furina-themes .pomo-dial-inner {position:absolute;inset:13%;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:white}
+.furina-themes .clock-title {font-size:16px;line-height:1}
+.furina-themes .pomo-time {font-family:Georgia,"Times New Roman",serif;font-size:65px;line-height:1;font-weight:400;color:white;letter-spacing:0;font-variant-numeric:tabular-nums}
+.furina-themes .clock-flourish {font-size:19px;color:#f5faff;letter-spacing:2px;line-height:1}
+.furina-themes .dial-jewel {position:absolute;color:#c3a268;font-size:34px;line-height:1;z-index:3;text-shadow:1px 1px 0 #fff}
+.furina-themes .jewel-top {top:-15px;left:50%;transform:translateX(-50%)}
+.furina-themes .jewel-left {top:46%;left:-12px;font-size:26px}.furina-themes .jewel-right {top:46%;right:-12px;font-size:26px}
+.furina-themes .pomo-tabs {position:relative;z-index:4;display:flex;gap:10px;width:100%;justify-content:center;background:var(--card);padding:6px 0 4px;margin:-4px 0 6px;flex-shrink:0;flex-wrap:nowrap}
+.furina-themes .pomo-tabs button {min-height:30px;padding:3px 12px;flex:1;max-width:90px;font:16px var(--font);color:#52699c;border:1px solid #cbd9ee;border-radius:20px;background:#eff4ff;cursor:pointer;white-space:nowrap}
+.furina-themes .pomo-tabs button.on {background:linear-gradient(100deg,#376ae2,#7096e4);color:#fff;border-color:#668adc}
+.furina-themes .pc-main {display:flex;align-items:center;justify-content:center;gap:8px;min-height:42px;height:42px;width:100%;border:1px solid #6d92df;border-radius:26px;background:linear-gradient(120deg,#386cea,#719aeb);box-shadow:inset 0 0 0 3px #ffffff25,0 2px 3px #3e60a526;color:#fff;cursor:pointer;flex-shrink:0}
+.furina-themes .pc-main svg {width:21px;height:21px;background:#fff;border-radius:50%;color:#5483e6;padding:3px}
+.furina-themes .pc-main::after {content:attr(aria-label);font:20px var(--font);letter-spacing:.08em}
+.furina-themes .pomo-notice:empty {display:none}.furina-themes .pomo-notice {font-size:12px;margin:4px 0 0}
+.sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.furina-themes .hero-picture {position:relative;min-height:0;flex:1;border:1px solid #c2ad83;border-radius:14px 14px 7px 7px;margin:0;overflow:hidden}
+.furina-themes .hero-picture::after {content:'';position:absolute;inset:4px;border:1px solid #e1c895;border-radius:11px 11px 5px 5px;pointer-events:none}
+.furina-themes #heroPortrait {display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 44%}
+.furina-themes .hero-nav {position:absolute;z-index:4;top:50%;margin-top:-20px;width:40px;height:40px;border-radius:50%;background:#3769bce6;border:1px solid #c3d5f6;color:#fff;font:32px/1 Georgia;display:grid;place-items:center;padding-bottom:4px;opacity:1;cursor:pointer;box-shadow:0 2px 4px #19395d22}
+.furina-themes .hero-nav.prev {left:0}.furina-themes .hero-nav.next {right:0}
+.furina-themes .hero-dots {display:none}
+.furina-themes .dash-hero-info {display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50px;padding:8px 6px 2px;color:#18428f;background:none;border:0;font:16px/1.4 var(--font);text-shadow:none;cursor:pointer;flex-shrink:0}
+.furina-themes .dash-hero-info .flourish {font-size:13px;margin-top:6px}
+.furina-themes #homeQuote {display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%}
+.furina-themes #dashProjects {display:flex;flex-direction:column;justify-content:space-around;height:calc(100% - 39px);gap:20px}
+.furina-themes .dj-row {padding:0;border:0}.furina-themes .dj-head {display:flex;align-items:center;gap:8px;font-size:17px;color:#113b87}
+.furina-themes .dj-head svg {width:21px;height:21px}.furina-themes .dj-val {margin-left:auto;font-size:17px;font-family:var(--font)}
+.furina-themes .dj-bar {height:9px;margin:11px 0 9px;background:#d8dfef;border-radius:5px;overflow:hidden}.furina-themes .dj-bar i {display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#3156f3,#4698fa)}
+.furina-themes .dj-meta {font-size:11px;line-height:1.6;color:#6e80a6;overflow-wrap:anywhere}
+.furina-themes .dash-stats h2 {margin-bottom:0}.furina-themes .chart-unit {align-self:flex-end;font-size:11px;color:#6c7fa4;height:24px}
+.furina-themes .chart-area {display:flex;gap:8px;flex:1;min-height:0}.furina-themes .chart-axis {display:flex;flex-direction:column;justify-content:space-between;padding-bottom:24px;width:25px;font-size:11px;color:#5d7098;text-align:right}
+.furina-themes .chart-main {display:flex;flex-direction:column;flex:1;min-width:0}.furina-themes .dash-bars {display:flex;gap:15px;align-items:stretch;flex:1;min-height:0;height:auto;border-bottom:1px solid #c9d7ec;padding-top:2px}
+.furina-themes .dash-bars .bar {height:100%;flex:1;display:flex;flex-direction:column;min-width:0;gap:4px}.furina-themes .dash-bars .bar-track {width:100%;flex:1;display:flex;align-items:flex-end}.furina-themes .dash-bars .bar-track i {display:block;width:100%;min-height:1px;background:linear-gradient(#85a9f2,#b4cafd);border:1px solid #749be6;border-radius:3px 3px 0 0;box-shadow:none}.furina-themes .dash-bars .bar.today .bar-track i {background:#e9f0ff;border:1px dashed #8badee;box-shadow:none}
+.furina-themes .dash-bars .bar-val {font:12px/1 var(--font);color:#143778;min-height:13px}.furina-themes .dash-bar-days {height:24px;margin:6px 0 0;gap:15px;display:flex}.furina-themes .dash-bar-days span {flex:1;font-size:12px;white-space:nowrap;color:#44608e}
+.furina-themes .dash-stats-total {display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font:13px var(--font);margin:12px 0 0;padding:10px 9px;border:1px solid #d4e0f4;border-radius:8px;background:#f2f7ff;color:#4c6391;white-space:nowrap}.furina-themes .dash-stats-total strong {color:#214995;font-weight:400}
+.furina-themes #homeApiQuota {flex:1;min-height:0;overflow:auto}.furina-themes .dq-row {padding:8px 0 12px;gap:8px;border:0;align-items:flex-start;position:relative}.furina-themes .dq-row+.dq-row {padding-top:18px;border-top:1px solid #d9e3f3}
+.furina-themes .dq-ic {width:35px;height:35px;border-radius:0;background:none;color:#356fea;flex-shrink:0}.furina-themes .dq-ic svg {width:28px;height:28px}.furina-themes .dq-main {min-width:0;flex:1}.furina-themes .dq-head {font-size:17px;color:#164eb6;align-items:center;flex-wrap:wrap;gap:2px}.furina-themes .dq-head b {font-weight:400}.furina-themes .dq-val {font:14px var(--font);color:#31519c}.furina-themes .dq-bar {height:6px;margin:8px 0 7px;background:#dce4f2}.furina-themes .dq-bar i {background:linear-gradient(90deg,#3672fa,#5d9efa)}.furina-themes .dq-sub {font-size:11px;color:#6379a2;line-height:1.7}.furina-themes .dq-pct {display:none}.furina-themes .dq-row:nth-child(2) .dq-ic,.furina-themes .dq-row:nth-child(2) .dq-head {color:#d9366c}.furina-themes .dq-row:nth-child(2) .dq-bar i {background:#d93870}
+.furina-themes .card-bottom-link {display:flex;justify-content:space-between;width:100%;margin-top:auto;padding:9px 0 2px;background:none;border:0;color:#20458d;font:13px var(--font);cursor:pointer}.furina-themes .card-bottom-link span {font-size:20px;line-height:1}
+.furina-themes #dashRemindList {overflow:auto;flex:1;min-height:0}.furina-themes .dr-row {display:flex;align-items:flex-start;gap:8px;padding:5px 0 9px;border:0;color:#3d5687;font-family:var(--font);flex-wrap:wrap}.furina-themes .dr-ic {width:15px;height:20px;background:none;color:#d5a565;flex-shrink:0;border-radius:0}.furina-themes .dr-ic svg {width:14px;height:14px}.furina-themes .dr-copy {display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}.furina-themes .dr-name {font-size:13px;line-height:1.4;overflow-wrap:anywhere}.furina-themes .dr-row time {font:11px var(--font);color:#6a80a8}.furina-themes .dash-remind-foot {display:flex;justify-content:flex-end;border:0;margin:0;padding:6px 0 0;font-size:12px}.furina-themes .dash-remind-foot button {font:13px var(--font);color:#315b9e;cursor:pointer;background:none;border:0}.furina-themes .dash-remind-foot>span {display:none}
+/* Secondary pages inherit the crystal palette and retain their original controls. */
+.furina-themes .page:not(#page-home) {padding-top:24px;font-family:-apple-system,"PingFang SC",sans-serif}
+.furina-themes .page:not(#page-home) .card h2 {white-space:normal}
+.furina-themes input,.furina-themes textarea,.furina-themes select {font:16px/1.5 -apple-system,"PingFang SC",sans-serif;color:#234681;background:#f6f9ff;border-color:#cbd9ec;caret-color:#4779e0}
+.furina-themes .btn {background:#4779d8;color:white;box-shadow:none;font-family:inherit}.furina-themes .btn.ghost {background:transparent;border:1px solid #c4d5ec;color:#365794}.furina-themes .btn.danger {background:#b74b58}
+.furina-themes .desktop-rail {background:transparent;color:#34518b}.furina-themes .desk-panel,.furina-themes .desk-pomo,.furina-themes .api-card,.furina-themes .layout-choice {background:#f6f9ff;color:#34518b;border-color:#cbd9ec;box-shadow:none}
+.furina-themes .theme-grid {display:block;max-width:430px}.furina-themes .theme-choice {display:flex;flex-direction:column;padding:0 0 14px;border:1px solid #9eb9e8;overflow:hidden;background:#f4f8ff;color:#234b96;width:100%}.furina-themes .theme-choice img {width:100%;height:auto}.furina-themes .theme-choice b {margin:12px 16px 4px}.furina-themes .theme-choice span,.furina-themes .theme-choice small {margin:3px 16px}.furina-themes .theme-choice.on {box-shadow:none;border-color:#4779e0}
+.furina-themes :focus-visible {outline:2px solid #2b64c3;outline-offset:3px}.furina-themes ::selection {background:#b6cef7;color:#163c86}.furina-themes ::-webkit-scrollbar {width:5px;height:5px}.furina-themes ::-webkit-scrollbar-thumb {background:#bbcee9;border-radius:6px}.furina-themes ::-webkit-scrollbar-track {background:transparent}.furina-themes .toast {background:#244b90;color:#fff;box-shadow:none}
+.furina-themes .empty {font-size:14px;color:#647ca9;padding:25px 10px;line-height:1.8}
+@media(max-width:1250px){
+ .furina-themes .side{width:174px}.furina-themes .nav button{font-size:17px;padding:10px 12px}.furina-themes .brand-name{font-size:25px}.furina-themes .main{padding-right:16px;padding-left:12px}.furina-themes .crystal-head{padding:0 16px;gap:22px}.furina-themes .crystal-head h1{font-size:34px}.furina-themes .crystal-head time{font-size:16px}
+ .furina-themes .card h2{font-size:18px}.furina-themes .dash-pomo{padding-left:14px;padding-right:14px}.furina-themes .pomo-options{right:14px;font-size:11px}.furina-themes .pomo-time{font-size:56px}.furina-themes .dp-task-icon{width:35px;height:35px}.furina-themes .dp-row{padding:10px;gap:8px}.furina-themes .dp-name{font-size:15px}.furina-themes .dp-detail{font-size:11px}.furina-themes .dp-row time{font-size:10px}.furina-themes .dq-head{font-size:14px}.furina-themes .dq-ic{width:22px}.furina-themes .dash-bars,.furina-themes .dash-bar-days{gap:9px}.furina-themes .dash-stats-total{font-size:11px;padding:8px 5px;gap:3px}.furina-themes .dj-head{font-size:15px}
+}
+@media(max-width:1050px){
+ .furina-themes .dash{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;gap:14px}.furina-themes .dash>.card{grid-area:auto;margin:0;min-height:300px}.furina-themes .dash>.dash-plan{min-height:374px}.furina-themes .dash>.dash-pomo{min-height:374px}.furina-themes .dash>.dash-hero{min-height:340px}.furina-themes .dash>.dash-projects{min-height:300px}.furina-themes .dash>.dash-stats{grid-column:1/-1;min-height:300px}.furina-themes .pomo-dial-wrap{width:246px;flex-shrink:0}.furina-themes .dash-pomo h2{margin-bottom:6px}.furina-themes .crystal-head time{font-size:14px}.furina-themes .welcome-copy{padding-left:30px;width:52%}.furina-themes .welcome-copy h2{font-size:29px}.furina-themes .welcome-copy p{font-size:16px}.furina-themes .desktop-rail{display:none}
+}
+@media(max-width:699px){
+ .furina-themes .side{width:66px;padding:8px 4px 10px}.furina-themes .side-frame{inset:2px}.furina-themes .brand{padding:0 0 12px}.furina-themes .brand::before{width:40px;height:40px;background-size:30px}.furina-themes .brand-name,.furina-themes .brand-sub{display:none}.furina-themes .nav{gap:5px}.furina-themes .nav button{font-size:10px;min-height:52px;gap:5px;padding:7px 1px;flex-direction:column;white-space:normal}.furina-themes .nav svg{width:20px;height:20px}.furina-themes .side-emblem{min-height:30px;padding:10px 0}.furina-themes .side-emblem::after{display:none}.furina-themes .side-emblem::before{font-size:16px}
+ .furina-themes .main{padding:0 10px 24px}.furina-themes .crystal-head{height:108px;display:grid;grid-template-columns:1fr auto;align-content:center;padding:0 4px;gap:8px;z-index:3}.furina-themes .crystal-head h1{font-size:26px;grid-column:1/-1}.furina-themes .crystal-head time{font-size:13px}.furina-themes .sync-button{font-size:13px;padding:4px 8px;min-height:32px}
+ .furina-themes .crystal-welcome{height:170px;overflow:hidden;margin-bottom:12px}.furina-themes .crystal-banner-art{height:100%;width:100%;object-position:61% center}.furina-themes .crystal-welcome::before{inset:0 12% 0 0;background:linear-gradient(90deg,#f3f7ffe8,transparent)}.furina-themes .welcome-copy{width:70%;padding:25px 16px}.furina-themes .welcome-copy h2{font-size:24px}.furina-themes .welcome-copy p{font-size:14px}.furina-themes .welcome-copy .flourish{width:140px}
+ .furina-themes .dash{display:flex;flex-direction:column;gap:12px}.furina-themes .dash>.card{margin:0;min-height:300px;padding:18px 14px}.furina-themes .dash>.dash-plan{min-height:345px}.furina-themes .dash>.dash-pomo{min-height:374px}.furina-themes .dash>.dash-hero{height:330px;min-height:330px;padding:6px 8px}.furina-themes .dash>.dash-projects{min-height:275px}.furina-themes .dash>.dash-stats{height:305px;min-height:305px}.furina-themes .dash>.dash-api{min-height:300px}.furina-themes .dash>.dash-remind{min-height:280px}
+ .furina-themes #dashPlanList{max-height:300px}.furina-themes .dp-row{padding:9px 8px;min-height:74px;gap:8px}.furina-themes .dp-task-icon{width:34px;height:34px}.furina-themes .dp-task-icon svg{width:21px;height:21px}.furina-themes .dp-copy{min-width:65px}.furina-themes .dp-row time{max-width:58px;white-space:normal}.furina-themes .pomo-options{top:20px}.furina-themes .card h2{font-size:20px}.furina-themes .pomo-time{font-size:65px}.furina-themes .dash-stats-total{font-size:12px}.furina-themes .row{flex-wrap:wrap}.furina-themes .row input{min-width:0;flex:1 1 150px}.furina-themes .main .page.on{max-width:none}
+}
+body.furina-themes[data-layout="mobile"] .dash{display:flex;flex-direction:column}
+body.furina-themes[data-layout="mobile"] .dash>.card{grid-area:auto;margin:0;min-height:305px}
+body.furina-themes[data-layout="mobile"] .dash>.dash-pomo{min-height:374px}
+body.furina-themes[data-layout="mobile"] .dash>.dash-hero{height:340px}
+@media(prefers-reduced-motion:reduce){.furina-themes *,.furina-themes *::before,.furina-themes *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.furina-themes .project-open{display:block;width:100%;text-align:left;background:none;border:0;padding:0;font-family:var(--font);color:var(--text);cursor:pointer}
+.furina-themes .project-open .dj-bar,.furina-themes .project-open .dj-meta{display:block}
+.furina-themes .sync-button:disabled,.furina-themes .clear-plan:disabled{opacity:.5;cursor:default}
+/* Fidelity adjustments from the first desktop/mobile comparison. */
+body.furina-themes{background-image:linear-gradient(#edf4fff0,#edf4fff0),url('assets/plates/banner.png')}
+.furina-themes .dp-task-icon svg,.furina-themes .dj-head svg{stroke:currentColor}
+.furina-themes .card::before{inset:3px!important;width:auto!important;height:auto!important;border:1px solid #dfd0b0!important;border-radius:10px!important;background:none!important;box-shadow:none!important}
+@media(min-width:1051px){
+ .furina-themes .dash-plan{grid-column:1/40;margin-right:14px}
+ .furina-themes .dash-pomo{grid-column:40/70;margin-right:14px}
+ .furina-themes .dash-hero{grid-column:70/101}
+ .furina-themes .dash-projects{grid-column:1/26}
+ .furina-themes .dash-stats{grid-column:26/58}
+ .furina-themes .dash-api{grid-column:58/80}
+ .furina-themes .dash-remind{grid-column:80/101}
+}
+.furina-themes .pomo-dial-inner{inset:13%;gap:16px}
+.furina-themes #page-home>.banner{order:10;margin-top:14px;font-family:-apple-system,"PingFang SC",sans-serif}
+/* Independent review: correct plot scale, legibility, and reference motifs. */
+.furina-themes .crystal-head h1{font-size:34px}
+.furina-themes .crystal-head{gap:35px}
+.furina-themes .crystal-banner-art{width:84%;left:10%;right:auto;object-position:center 35%}
+.furina-themes .crystal-welcome{background:linear-gradient(90deg,#f2f7ff,#e4eefc)}
+.furina-themes .brand::before{background:url('assets/themes/crystal-emblem.svg') center/54px no-repeat;filter:none;opacity:1}
+.furina-themes .flourish,.furina-themes .clock-flourish{display:block;width:130px;height:18px;background:url('assets/themes/crystal-trim.svg') center/contain no-repeat;font-size:0;color:transparent}
+.furina-themes .flourish::before,.furina-themes .flourish::after{display:none}
+.furina-themes .welcome-copy .flourish{width:225px;background-size:115px 20px;height:20px}
+.furina-themes .clock-flourish{filter:brightness(0) invert(1);opacity:.9}
+.furina-themes .side-emblem::before{content:'';height:26px;width:150px;background:url('assets/themes/crystal-trim.svg') center/contain no-repeat}
+.furina-themes .card{position:relative!important;isolation:isolate;overflow:visible}
+.furina-themes .card::before{inset:0!important;border:0!important;border-radius:0!important;background:url('assets/themes/crystal-frame.svg') center/100% 100% no-repeat!important;z-index:0}
+.furina-themes .card>*{position:relative;z-index:1}
+/* 日记、健康等内容页优先可编辑性：不在输入区叠加仪式边框。 */
+.furina-themes .page:not(#page-home) .card::before{display:none!important}
+.furina-themes .dial-jewel{font-size:0;width:28px;height:38px;background:url('assets/themes/crystal-emblem.svg') center/contain no-repeat;filter:sepia(1) saturate(.7)}
+.furina-themes .jewel-top{top:-19px}.furina-themes .jewel-left,.furina-themes .jewel-right{height:25px;width:19px;top:45%;font-size:0}
+.furina-themes .jewel-left{left:-8px;transform:rotate(-90deg)}.furina-themes .jewel-right{right:-8px;transform:rotate(90deg)}
+.furina-themes .jewel-bottom{bottom:-19px;left:50%;transform:translateX(-50%) rotate(180deg)}
+.furina-themes .pomo-track{position:absolute;inset:13%;border:1px solid #ffffff88;border-radius:50%}
+.furina-themes .pomo-arc{position:absolute;inset:4%;border-radius:50%;background:conic-gradient(#ebc98a var(--timer-progress,0%),transparent 0);mask:radial-gradient(circle,transparent 68%,black 69%)}
+.furina-themes .dp-detail,.furina-themes .dj-meta,.furina-themes .dr-row time,.furina-themes .dq-sub,.furina-themes .dp-row time{color:#526b94}
+.furina-themes .nav button.on{background:linear-gradient(110deg,#4c74b9,#587fc3);border-color:#8faee3;color:white}
+.furina-themes .nav button.on:hover{background:#466cb0}
+.furina-themes .dash-bars{position:relative;padding-top:0}
+.furina-themes .dash-bars .bar{position:relative;display:block;height:100%}
+.furina-themes .dash-bars .bar-track{position:absolute;inset:0;display:flex;align-items:flex-end}
+.furina-themes .dash-bars .bar-val{position:absolute;bottom:calc(var(--bar-height,0%) + 4px);left:50%;transform:translateX(-50%);white-space:nowrap;z-index:1}
+.furina-themes .chart-axis{padding-bottom:30px}
+@media(min-width:1051px) and (max-width:1350px){.furina-themes{--primary-height:374px}.furina-themes .dp-row{min-height:70px;padding-top:8px;padding-bottom:8px}.furina-themes .card h2{font-size:18px}.furina-themes .dq-head{font-size:15px}.furina-themes .dq-ic{width:24px}}
+@media(max-width:699px){.furina-themes .crystal-head h1{font-size:26px}.furina-themes .crystal-head{gap:8px}.furina-themes .crystal-banner-art{width:100%;left:0;object-position:61% center}.furina-themes .brand::before{background-size:34px}.furina-themes .side-emblem::before{width:48px;height:16px}}
+.furina-themes .crystal-banner-art{width:90%;left:auto;right:0}
+.furina-themes .welcome-copy .flourish{font-size:0;color:transparent}
+@media(min-width:1051px) and (max-width:1350px){body.furina-themes{--primary-height:374px}}
+@media(max-width:699px){.furina-themes .crystal-banner-art{width:100%;left:0;right:auto}}
+
+
+/* First-theme corrections: own the shell at every saved layout mode. */
+body.furina-themes .app{display:flex;height:100dvh;min-width:0;max-width:none}
+body.furina-themes .side{display:flex;flex-direction:column;width:198px;flex:0 0 198px;padding:12px 10px 18px;overflow:auto;border:0}
+body.furina-themes .side-frame{position:absolute;inset:2px 5px 15px;pointer-events:none}
+body.furina-themes .side-frame:before{content:'';position:absolute;inset:4px;border:1px solid #deceb0;border-radius:12px}
+body.furina-themes .brand{flex-direction:column;padding:4px 0 24px;margin:0;border:0;gap:0;flex-shrink:0}
+body.furina-themes .nav{display:flex;flex-direction:column;gap:9px;flex-shrink:0}
+body.furina-themes .nav button{flex-direction:row;min-height:54px;padding:12px 17px;font-size:20px;gap:14px;border-radius:7px}
+body.furina-themes .nav svg{stroke:currentColor}
+body.furina-themes .side-emblem{align-items:center;flex-shrink:0;padding:20px 0 30px}
+body.furina-themes .main{flex:1;min-width:0;padding:0 24px 30px 16px;overflow:auto}
+body.furina-themes .desktop-rail{display:none}
+body.furina-themes #page-home.on{display:flex;gap:0;max-width:none}
+.furina-themes .crystal-welcome{height:192px;overflow:visible;isolation:isolate;background:#eef5ff}
+.furina-themes .welcome-architecture{position:absolute;inset:0;border-radius:12px;background:linear-gradient(90deg,#f3f7fff5 0%,#f3f7ffb0 29%,#eef6ff20 60%),url('fontaine-daylight-v2.png') center 47%/cover;z-index:0}
+.furina-themes .crystal-welcome::before{display:none}
+.furina-themes .crystal-welcome::after{z-index:1}
+.furina-themes .furina-peek{position:absolute;height:280px;width:auto;max-width:55%;object-fit:contain;object-position:right bottom;right:18px;bottom:0;z-index:3;pointer-events:none}
+.furina-themes .welcome-copy{z-index:4}
+.furina-themes .crystal-head{z-index:1}
+/* A true circular, fine-lined blue dial. SVG ticks are functional geometry. */
+.furina-themes .dash-pomo{padding:18px 22px 15px}
+.furina-themes .dash-pomo>h2{margin-bottom:0}
+.furina-themes .pomo-dial-wrap{width:260px;height:260px;max-width:100%;aspect-ratio:1;flex:none;margin:0 auto -32px;border:1px solid #c8aa74;border-radius:50%;background:radial-gradient(circle at 40% 28%,#799eee,#4a70d4 65%,#f7fbff 65.5%);box-shadow:inset 0 0 0 5px #f8fbff,inset 0 0 0 6px #d8c199}
+.furina-themes .pomo-dial{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.furina-themes .pomo-track{fill:none;stroke:#ffffffa0;stroke-width:.8}
+.furina-themes .pomo-arc{fill:none;stroke:#f7d793;stroke-width:2;mask:none;background:none;transform-origin:center}
+.furina-themes .pomo-dial .tk{stroke:#bb9e66;stroke-width:.6}
+.furina-themes .pomo-dial .tk.major{stroke:#b89a61;stroke-width:1}
+.furina-themes .pomo-dial .tk:not(.major){display:block}
+.furina-themes .pomo-dial-inner{position:absolute;inset:15%;border-radius:50%;background:none;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;color:white}
+.furina-themes .pomo-time{font:400 66px/1 Georgia,serif;color:#fff;-webkit-text-fill-color:#fff;background:none;text-shadow:0 2px 5px #244c9120;letter-spacing:0}
+.furina-themes .clock-title{color:white;font-size:16px}
+.furina-themes .clock-flourish{filter:brightness(0) invert(1)}
+.furina-themes .jewel-top{top:-12px;width:24px;height:30px}
+.furina-themes .jewel-left,.furina-themes .jewel-right{top:45%;width:18px;height:26px}
+.furina-themes .pomo-tabs{margin:0 0 8px;padding:6px 0 3px;background:#f6faff;gap:12px;flex:none}
+.furina-themes .pomo-tabs button{height:30px;min-height:30px;font-size:15px}
+.furina-themes .pc-main{height:44px;min-height:44px;flex:none;border-radius:23px;background:linear-gradient(120deg,#386be0,#6b98ed);box-shadow:inset 0 0 0 3px #ffffff28,0 2px 4px #355baa25}
+.furina-themes .pc-main::after{font:18px var(--font)}
+.furina-themes #page-settings.on{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start;max-width:1180px;margin:0 auto;padding:28px 8px 40px}
+.furina-themes .settings-header{grid-column:1/-1;padding:0 4px 20px;border-bottom:1px solid #cddbef;display:grid;grid-template-columns:1fr auto;gap:8px}
+.furina-themes .settings-header h1{font:700 32px var(--font-serif);grid-column:1/-1}
+.furina-themes .settings-header p{font-size:15px;color:#526b94}
+.furina-themes .settings-header small{font-size:12px;color:#526b94;align-self:center}
+.furina-themes #page-settings .card{margin:0;padding:24px;min-width:0;width:auto}
+.furina-themes #page-settings .card h2{font:600 21px var(--font-serif);padding:0 0 14px;margin:0 0 16px;border-bottom:1px solid #dce5f2;white-space:normal}
+.furina-themes #page-settings .hint{font:13px/1.8 -apple-system,'PingFang SC',sans-serif;color:#526b94}
+.furina-themes #page-settings .settings-label{display:block;margin:12px 0 6px;font-size:13px;color:#355582}
+.furina-themes #page-settings input:not([type=file]){display:block;width:100%;min-width:0;padding:10px 12px;border-radius:8px;border:1px solid #c5d5ec;margin:0;font-size:14px}
+.furina-themes #page-settings .row{display:flex;flex-wrap:wrap;gap:10px}
+.furina-themes #page-settings .btn{padding:10px 16px;margin:0;border-radius:8px;font:14px -apple-system,'PingFang SC',sans-serif;min-height:40px}
+.furina-themes #page-settings .row input{flex:1 1 100%}
+.furina-themes #page-settings .theme-grid{max-width:none}
+.furina-themes #page-settings .theme-choice{display:grid;grid-template-columns:120px 1fr;grid-template-rows:auto auto;text-align:left;gap:0 16px;padding:10px;background:#eff5ff;border-radius:10px}
+.furina-themes #page-settings .theme-choice img{width:120px;height:80px;object-fit:cover;grid-row:1/3;border-radius:6px}
+.furina-themes #page-settings .theme-choice b{margin:10px 0 0;font-size:18px}
+.furina-themes #page-settings .theme-choice span{margin:0;font-size:13px;color:#526b94}
+.furina-themes #page-settings .layout-grid{display:flex;gap:10px}
+.furina-themes #page-settings .layout-choice{flex:1;min-width:0;min-height:101px;border:1px solid #cad9ef;border-radius:10px;font-size:14px;padding:12px 5px}
+.furina-themes #page-settings .layout-choice.on{background:#e6efff;border-color:#5e87d5;color:#244f9d}
+.furina-themes #page-settings .settings-danger,.furina-themes #page-settings .settings-about{grid-column:1/-1}
+.furina-themes #page-settings .settings-about{background:none;border:0;box-shadow:none;padding:6px}
+.furina-themes #page-settings .settings-about:before{display:none}
+@media(max-height:820px) and (min-width:700px){body.furina-themes .brand{padding-bottom:15px}body.furina-themes .brand::before{height:40px;background-size:38px}body.furina-themes .nav{gap:5px}body.furina-themes .nav button{min-height:44px;font-size:18px;padding-top:8px;padding-bottom:8px}body.furina-themes .side-emblem{padding:15px 0}}
+@media(max-width:1250px) and (min-width:700px){body.furina-themes .side{width:174px;flex-basis:174px}body.furina-themes .nav button{font-size:17px;padding-left:12px;padding-right:12px}.furina-themes .furina-peek{right:0;max-width:52%}}
+@media(max-width:1050px){.furina-themes #page-settings.on{grid-template-columns:1fr}.furina-themes .settings-header{grid-template-columns:1fr}.furina-themes .pomo-dial-wrap{max-width:260px}.furina-themes .dash>.dash-pomo{min-height:390px}}
+@media(max-width:699px){body.furina-themes .side{width:66px;flex-basis:66px;padding:8px 4px}body.furina-themes .nav{gap:4px}body.furina-themes .nav button{font-size:10px;min-height:52px;flex-direction:column;gap:5px;padding:7px 1px}body.furina-themes .brand{padding-bottom:12px}body.furina-themes .side-emblem{padding:12px 0}body.furina-themes .main{padding:0 10px 24px}.furina-themes .crystal-welcome{height:170px;margin-top:20px}.furina-themes .furina-peek{height:200px;max-width:78%;right:-5px}.furina-themes .welcome-copy{width:75%;padding-left:12px}.furina-themes .welcome-copy p{max-width:130px;font-size:13px}.furina-themes #page-settings.on{padding:20px 0}.furina-themes #page-settings .card{padding:20px 16px}.furina-themes .settings-header small{grid-column:1}.furina-themes .pomo-dial-wrap{width:240px;height:240px}.furina-themes .pomo-time{font-size:60px}.furina-themes .dash>.dash-pomo{min-height:374px}}
+body.furina-themes .side{border-right:0!important}
+body.furina-themes .nav button{border-radius:7px!important}
+body.furina-themes .nav button.on{background:linear-gradient(110deg,#4c74b9,#587fc3)!important;color:#fff}
+.furina-themes .card::before{content:'';display:block;position:absolute;pointer-events:none}
+.furina-themes .side-emblem{border:0;background:none}
+.furina-themes .pomo-dial-wrap{background:radial-gradient(circle at center,#6489e2 0%,#4c73d6 62%,#f7fbff 62.8%);box-shadow:inset 0 0 0 5px #f8fbff,inset 0 0 0 6px #d8c199}
+.furina-themes .pomo-dial-inner{background:radial-gradient(ellipse at 35% 20%,#a8c4ff30,transparent 75%)}
+.furina-themes .dq-row{display:flex}
+.furina-themes .dq-head{display:flex;justify-content:space-between}
+.furina-themes .dq-bar{border-radius:4px;overflow:hidden}
+.furina-themes .dq-bar i{display:block;height:100%}
+.furina-themes .dr-row{width:100%;background:none;text-align:left;cursor:pointer}
+.furina-themes .hero-image-wrap{position:relative;flex:1;min-height:0;overflow:hidden;border:1px solid #c5ac79;border-radius:10px}
+.furina-themes .hero-image-wrap>img{width:100%;height:100%;object-fit:cover;display:block}
+.furina-themes #page-settings input:not([type=file]){font-size:16px}
+@media(max-width:699px){.furina-themes .furina-peek{max-width:none;width:210px;height:210px;object-fit:cover;object-position:left bottom;right:0}.furina-themes .welcome-copy h2{font-size:21px}.furina-themes .welcome-copy{padding-top:55px;width:65%}.furina-themes .welcome-copy p{font-size:12px;max-width:110px}.furina-themes .welcome-copy .flourish{display:none}}
+body.furina-themes .card::before{display:block!important}
+body.furina-themes #page-settings .settings-about::before{display:none!important}
+/* Approved C: Fontaine ceremonial dial, with live time over an enamel plate. */
+body.furina-themes .pomo-dial-wrap{width:min(246px,100%);height:auto;max-width:100%;aspect-ratio:1;flex:none;margin:0 auto;border:0;border-radius:0;background:url('assets/plates/ceremonial-dial.png') center/100% 100% no-repeat;box-shadow:none}
+body.furina-themes .pomo-dial-wrap .dial-jewel,body.furina-themes .pomo-dial-wrap .pomo-track,body.furina-themes .pomo-dial-wrap #pomoTicks,body.furina-themes .pomo-dial-wrap .clock-flourish{display:none}
+body.furina-themes .pomo-dial-inner{inset:24% 18% 27%;background:none;gap:10px;justify-content:center;color:#173b7e}
+body.furina-themes .clock-title{font-size:14px;color:#25467f}
+body.furina-themes .pomo-time{font:400 49px/1 Georgia,serif;color:#173b7e;-webkit-text-fill-color:#173b7e;text-shadow:none;letter-spacing:-.02em}
+body.furina-themes .pomo-arc{stroke:#376fcd;stroke-width:1.5;opacity:.8}
+body.furina-themes .pomo-tabs{margin:-1px 0 6px;padding:0;background:none}
+body.furina-themes .dash-pomo>h2{margin-bottom:0}
+body.furina-themes .pc-main{height:40px;min-height:40px}
+@media(max-width:699px){body.furina-themes .pomo-dial-wrap{width:240px;height:240px}body.furina-themes .pomo-time{font-size:47px}}
+/* C dial: optically centered live numerals, clear of the lower ornament. */
+body.furina-themes .pomo-dial-inner .clock-title{display:none}
+body.furina-themes .pomo-dial-inner{inset:0;display:block;background:none}
+body.furina-themes .pomo-time{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;font-family:'Baskerville','Times New Roman',serif;font-size:48px;font-weight:400;line-height:1;letter-spacing:0;font-variant-numeric:lining-nums tabular-nums;color:#19366e;-webkit-text-fill-color:#19366e}
+@media(max-width:699px){body.furina-themes .pomo-time{font-size:46px}}
+/* 两栏卡片在窄桌面会比钟面本身还窄：提前改为单栏，避免钟面溢出。 */
+@media(max-width:900px) and (min-width:700px){
+  body.furina-themes .dash{display:flex;flex-direction:column;gap:12px}
+  body.furina-themes .dash>.card{grid-area:auto;margin:0;min-height:0}
+  body.furina-themes .dash>.dash-plan{min-height:345px}
+  body.furina-themes .dash>.dash-pomo{min-height:410px}
+  body.furina-themes .dash>.dash-hero{height:320px;min-height:320px;padding:6px 8px}
+  body.furina-themes .dash>.dash-projects{min-height:275px}
+  body.furina-themes .dash>.dash-stats{min-height:305px}
+  body.furina-themes .dash>.dash-api{min-height:300px}
+  body.furina-themes .dash>.dash-remind{min-height:280px}
+  body.furina-themes .pomo-dial-wrap{width:246px;max-width:calc(100% - 4px)}
+}
+
+/* 以完整的表盘、模式切换和开始按钮的实际高度定义布局，而非裁切内容。 */
+@media(min-width:901px){
+  body.furina-themes .dash{grid-template-rows:minmax(410px,auto) minmax(300px,auto)}
+  body.furina-themes .dash>.dash-pomo{min-height:410px}
+}
+@media(max-width:699px){
+  body.furina-themes .dash>.dash-pomo{min-height:420px}
+}

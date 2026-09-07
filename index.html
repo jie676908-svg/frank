@@ -597,27 +597,15 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 }
 /* ==== 功能：枫丹专注钟 + API 额度 样式 END ==== */
 </style>
+<link rel="stylesheet" href="themes.css?v=20260907-6">
 </head>
-<body>
+<body class="furina-themes">
 
 <div class="app">
 
   <!-- ==== 侧边栏 START ==== -->
   <aside class="side">
-    <div class="brand">
-      <div class="logo"><img src="assets/sourced/elements/element_hydro.png" alt="水元素"></div>
-      <div class="name">FONTAINE · OPERA</div>
-    </div>
-    <nav class="nav" id="nav">
-      <!-- 由 App.routes 自动渲染 -->
-    </nav>
-    <!-- ==== 功能：枫丹专注钟 侧栏小工具 START ==== -->
-    <div class="side-pomo" id="sidePomo" onclick="App.go('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();App.go('home')}" role="button" tabindex="0" aria-label="枫丹专注钟">
-      <div class="side-pomo-head">⏳ 枫丹专注钟</div>
-      <div class="side-pomo-time mono ref-pomo-time" id="sidePomoTime">--:--</div>
-      <div class="side-pomo-state ref-pomo-state" id="sidePomoState">准备开始</div>
-    </div>
-    <!-- ==== 功能：枫丹专注钟 侧栏小工具 END ==== -->
+<div class="side-frame" aria-hidden="true"></div><div class="brand"><div class="brand-name">水神剧场</div><div class="brand-sub">清透水晶</div></div><nav class="nav" id="nav" aria-label="主导航"></nav><div class="side-emblem" aria-hidden="true"></div>
   </aside>
   <!-- ==== 侧边栏 END ==== -->
 
@@ -625,46 +613,24 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 
     <!-- ==== 功能：剧场主页 START ==== -->
     <section class="page" id="page-home">
-      <div class="stage-hero wide"><div><h1 class="hero">水神剧场</h1><p>让阅读、写作与训练，都成为今日值得记录的一幕。</p><small class="furina-signature">芙宁娜 · 今日剧场</small></div></div>
-      <div class="card stage-quote wide" onclick="Home.nextQuote()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();Home.nextQuote()}" role="button" tabindex="0"><p id="homeQuote"></p><small>芙宁娜 · 点击切换台词</small></div>
-      <div class="card wide today-action-card"><h2>今天最重要的一幕</h2><div id="homeNextAction"><div class="today-action-main">先定下今天最重要的一件事。</div></div><div class="today-action-caption">由芙宁娜为今天揭幕</div><button class="btn ghost" style="margin-top:18px" onclick="App.go('plan')">安排今日计划</button></div>
-      <div class="page-title">今日总览</div><div class="page-sub">四个最重要的舞台，一眼看到进度</div>
-      <div class="card" onclick="App.go('papers')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('papers')" role="button" tabindex="0"><h2>论文研读 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homePapers"></div></div>
-      <div class="card" onclick="App.go('books')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('books')" role="button" tabindex="0"><h2>阅读书籍 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homeBooks"></div></div>
-      <div class="card" onclick="App.go('plan')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('plan')" role="button" tabindex="0"><h2>今日计划 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homePlan"></div></div>
-      <div class="card" onclick="App.go('fitness')" onkeydown="if(event.key==='Enter'||event.key===' ')App.go('fitness')" role="button" tabindex="0"><h2>健身记录 <span class="pill" style="margin-left:auto">进入</span></h2><div id="homeFitness"></div></div>
-
-      <!-- ==== 功能：枫丹专注钟 START ==== -->
-      <div class="card wide pomo-card">
-        <h2>⏳ 枫丹专注钟 <span class="pill ref-clock" id="pomoBadge" style="margin-left:auto">专注</span></h2>
-        <div class="pomo-layout">
-          <div class="pomo-clock ref-clock" id="pomoClock" style="--pomo-progress:0%">
-            <div class="pomo-clock-inner">
-              <div class="pomo-time mono" id="pomoTime">25:00</div>
-              <div class="pomo-state" id="pomoState">准备开始</div>
-            </div>
-          </div>
-          <div class="pomo-side">
-            <div class="pomo-tabs">
-              <button data-pomo="focus" onclick="Pomodoro.choose('focus')">专注 25</button>
-              <button data-pomo="short" onclick="Pomodoro.choose('short')">短休 5</button>
-              <button data-pomo="long" onclick="Pomodoro.choose('long')">长休 15</button>
-            </div>
-            <div class="pomo-custom">
-              <span>自定义分钟</span>
-              <input type="number" id="pomoMinutes" min="1" max="180" value="25">
-            </div>
-            <div class="pomo-controls">
-              <button class="btn" id="pomoStart" onclick="Pomodoro.start()">开始专注</button>
-              <button class="btn ghost" onclick="Pomodoro.pause()">暂停</button>
-              <button class="btn ghost" onclick="Pomodoro.reset()">重置</button>
-            </div>
-            <div class="pomo-notice" id="pomoNotice"></div>
-            <button class="btn ghost" style="margin-top:6px" onclick="Pomodoro.testAlert()">测试铃声与通知</button>
-          </div>
+      <div class="crystal-head wide"><h1>今日主舞台</h1><time id="dashDate">—</time><button class="sync-button" onclick="Home.syncNow()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7a9 9 0 0 0-15-2L2 8m0-5v5h5M4 17a9 9 0 0 0 15 2l3-3m0 5v-5h-5"/></svg><span>同步</span></button></div>
+      <div class="crystal-welcome wide"><div class="welcome-architecture" aria-hidden="true"></div><img class="furina-peek" src="assets/plates/furina-cutout.png" alt="芙宁娜"><div class="welcome-copy"><h2>您好，博士！</h2><p>愿正义与美德的水花，<br>指引今日的每一步。</p><span class="flourish" aria-hidden="true">◇</span></div></div>
+      <div class="dash wide">
+        <div class="card dash-plan"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 2 4 4-1 1 4 3 3-3 3-1 4-4-1-2 4-2-4-4 1-1-4-3-3 3-3 1-4 4 1z"/><circle cx="12" cy="12" r="3"/></svg>今日计划<button class="hlink" onclick="Plan.today();App.go('plan')">＋ 添加任务</button></h2><div id="dashPlanList"></div><div id="dashPlanFoot" class="dash-plan-foot"></div></div>
+        <!-- ==== 功能：枫丹专注钟 START ==== -->
+        <div class="card dash-pomo" id="dashPomoCard"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>专注计时</h2>
+          <details class="pomo-options"><summary>⚙ 设置</summary><div class="pomo-options-panel"><label for="pomoMinutes">自定义分钟</label><input type="number" id="pomoMinutes" min="1" max="180" value="25"><div id="pomoDuration"></div><div id="pomoTask"></div><div id="pomoToday"></div><button class="btn ghost" onclick="Pomodoro.reset()">重置计时</button><button class="btn ghost" onclick="Pomodoro.testAlert()">测试铃声与通知</button></div></details>
+          <div class="pomo-dial-wrap"><svg class="pomo-dial" viewBox="0 0 220 220" aria-hidden="true"><g id="pomoTicks"></g><circle class="pomo-track" cx="110" cy="110" r="88"/><circle class="pomo-arc" id="pomoArc" cx="110" cy="110" r="88" transform="rotate(-90 110 110)"/></svg><span class="dial-jewel jewel-top" aria-hidden="true">♢</span><span class="dial-jewel jewel-left" aria-hidden="true">◇</span><span class="dial-jewel jewel-right" aria-hidden="true">◇</span><div class="pomo-dial-inner" id="pomoClock"><div class="pomo-time" id="pomoTime">25:00</div><span class="clock-flourish" aria-hidden="true">﹏ ◇ ﹏</span><span class="sr-only" id="pomoState" role="status">准备开始</span><span class="sr-only" id="pomoBadge">专注</span></div></div>
+          <div class="pomo-tabs"><button data-pomo="focus" class="on" onclick="Pomodoro.choose('focus')">专注</button><button data-pomo="short" onclick="Pomodoro.choose('short')">短休</button><button data-pomo="long" onclick="Pomodoro.choose('long')">长休</button></div>
+          <button class="pc-main" id="pomoStart" onclick="Pomodoro.toggle()" aria-label="开始专注"></button><div class="pomo-notice" id="pomoNotice" role="status"></div>
         </div>
+        <!-- ==== 功能：枫丹专注钟 END ==== -->
+        <div class="card dash-hero"><div class="hero-picture"><img id="heroPortrait" src="assets/plates/portrait.png" alt="芙宁娜"><button class="hero-nav prev" onclick="Home.prevImage()" aria-label="上一张立绘">‹</button><button class="hero-nav next" onclick="Home.nextImage()" aria-label="下一张立绘">›</button><div id="heroDots" class="hero-dots" aria-label="选择立绘"></div></div><button class="dash-hero-info" onclick="Home.nextQuote()" title="点击切换台词"><span id="homeQuote">今日的舞台，准备开幕。</span><span class="flourish" aria-hidden="true">◇</span></button></div>
+        <div class="card dash-projects"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V6h12v14zM8 6V3h4v3M8 10h4M8 14h4M16 11h4v9H4"/></svg>项目概览</h2><div id="dashProjects"></div></div>
+        <div class="card dash-stats"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M7 16v-5M12 16V6M17 16V9"/></svg>本周专注</h2><span class="chart-unit">单位：分钟</span><div class="chart-area"><div id="chartAxis" class="chart-axis"></div><div class="chart-main"><div id="dashStatsBars" class="dash-bars"></div><div class="dash-bar-days"><span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span><span>周日</span></div></div></div><div id="dashStatsTotal" class="dash-stats-total"></div></div>
+        <div class="card dash-api"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7zM3 7l9 5 9-5M12 12v10M8 9l4-2 4 2v5l-4 2-4-2z"/></svg>AI 服务额度</h2><div id="homeApiQuota"></div><button class="card-bottom-link" onclick="App.go('settings')">查看详情<span>›</span></button></div>
+        <div class="card dash-remind"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M10 21h4"/></svg>提醒与备忘</h2><div id="dashRemindList"></div><div id="dashRemindFoot" class="dash-remind-foot"></div></div>
       </div>
-      <!-- ==== 功能：枫丹专注钟 END ==== -->
     </section>
     <!-- ==== 功能：剧场主页 END ==== -->
 
@@ -721,121 +687,95 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 
     <!-- 设置页是必备的，不要删 -->
     <!-- ==== 功能：设置 START ==== -->
-    <section class="page" id="page-settings">
-      <div class="page-title">设置</div>
-
-      <div class="card">
-        <h2>💾 数据备份</h2>
-        <p class="hint" style="margin-top:0;margin-bottom:12px">
-          你的所有数据都存在这台手机的浏览器里，不在任何服务器上。<br>
+<section class="page" id="page-settings"><header class="settings-header"><h1>设置</h1><p>管理界面、数据与同步</p><small>版本 <span id="appVersion">20260907-6</span></small></header><div class="card settings-theme">
+<h2>主题皮肤</h2>
+<div class="theme-grid" id="themeGrid"><button aria-pressed="true" class="theme-choice on" data-theme="dawn" onclick="Theme.set('dawn')"><img alt="清透水晶" src="assets/themes/crystal-preview.png"/><b>清透水晶</b><span>当前主题</span></button></div>
+<p class="hint">皮肤选择保存在当前设备；手机和电脑可以各自选择。</p>
+</div><div class="card settings-layout">
+<h2>界面版本</h2>
+<div class="layout-grid" id="layoutGrid">
+<button class="layout-choice" data-layout="auto" onclick="LayoutMode.set('auto')"><b>◫</b>跟随设备</button>
+<button class="layout-choice" data-layout="mobile" onclick="LayoutMode.set('mobile')"><b>▯</b>手机版</button>
+<button class="layout-choice" data-layout="desktop" onclick="LayoutMode.set('desktop')"><b>▣</b>电脑版</button>
+</div>
+<p class="hint">只影响当前设备。手机版纵向排列，电脑版优先使用宽屏布局；窄屏仍会自动适配。</p>
+</div><div class="card settings-backup">
+<h2>数据备份</h2>
+<p class="hint" style="margin-top:0;margin-bottom:12px">
+          你的所有数据都存在当前设备的浏览器里；开启同步后，云端也会保存一份。<br/>
           换手机、清理浏览器数据前，记得先导出备份。
         </p>
-        <div class="row">
-          <button class="btn" onclick="Store.exportFile()">导出备份</button>
-          <button class="btn ghost" onclick="document.getElementById('importFile').click()">恢复备份</button>
-        </div>
-        <input type="file" id="importFile" accept=".json" style="display:none" onchange="Store.importFile(this)">
-        <p class="hint" id="backupInfo"></p>
-      </div>
-
-      <!-- ==== 功能：API 额度 密钥卡 START ==== -->
-      <div class="card wide">
-        <h2>🔑 AI 服务额度查询</h2>
-        <p class="hint" style="margin-top:0;margin-bottom:12px">
-          在此填入 DeepSeek 与 MiniMax 的 API Key，工作台会调用官方接口查询余额与剩余额度。<br>
-          密钥仅保存在当前设备的 localStorage 中，不参与云端同步。<br>
+<div class="row">
+<button class="btn" onclick="Store.exportFile()">导出备份</button>
+<button class="btn ghost" onclick="document.getElementById('importFile').click()">恢复备份</button>
+</div>
+<input accept=".json" id="importFile" onchange="Store.importFile(this)" style="display:none" type="file"/>
+<p class="hint" id="backupInfo"></p>
+</div><div class="card settings-lock">
+<h2>简单口令锁</h2>
+<p class="hint" style="margin-top:0;margin-bottom:12px">用于防止身边人随手翻看，不是高强度加密。口令只保存在当前设备，不参与同步和备份。</p>
+<div class="row"><label class="settings-label" for="lockPassNew">设置或更换口令</label><input id="lockPassNew" placeholder="设置或更换口令（至少 4 位）" type="password"/><button class="btn" onclick="PrivacyLock.set()">保存</button></div>
+<button class="btn ghost" onclick="PrivacyLock.clear()" style="margin-top:10px">关闭口令锁</button>
+</div><div class="card settings-quota">
+<h2>AI 服务额度查询</h2>
+<p class="hint" style="margin-top:0;margin-bottom:12px">
+          在此填入火山方舟、DeepSeek 与 MiniMax 的密钥，工作台会调用官方接口查询余额与剩余额度。<br/>
+          火山方舟额度查询使用控制台 AccessKey ID / SecretAccessKey（不是 ark- 推理 API Key）；密钥仅保存在当前设备的 localStorage 中，不参与云端同步。<br/>
           余额与剩余次数展示在右侧「API 额度」面板里。
         </p>
-        <div style="margin-top:8px"><input type="password" id="deepseekQuotaKey" placeholder="DeepSeek API Key（sk-…）" autocomplete="off"></div>
-        <div style="margin-top:10px"><input type="password" id="minimaxQuotaKey" placeholder="MiniMax API Key" autocomplete="off"></div>
-        <div class="row" style="margin-top:14px">
-          <button class="btn" onclick="ApiQuota.saveKeys()">保存并查询</button>
-          <button class="btn ghost" onclick="ApiQuota.refresh(true)">立即刷新</button>
-          <button class="btn ghost" onclick="ApiQuota.clearKeys()">清除密钥</button>
-        </div>
-        <p class="hint" id="quotaSettingsState">尚未配置</p>
-      </div>
-      <!-- ==== 功能：API 额度 密钥卡 END ==== -->
-
-      <!-- ==== 双端同步卡片 START ====（用户选单设备时删掉这张卡） -->
-      <div class="card wide" id="syncCard">
-        <h2>🔄 双端同步 <span class="hint" id="syncState" style="margin:0 0 0 auto;font-size:var(--fs-meta)"></span></h2>
-        <div id="syncOff">
-          <p class="hint" style="margin-top:0">
-            开启后手机和电脑登同一个账号，记的东西自动对齐。<br>
-            <b>数据会在你的设备和云端各存一份</b>，本地那份始终在，断网照样能记。<br>
-            云端那份是明文的——只有知道你密码的人能读，但平台运维理论上能看到。<br>
-            <b>密码忘了就进不去了，没有找回功能。</b>
-          </p>
-          <div style="margin-top:14px">
-            <input type="text" id="syncUser" placeholder="用户名（3-32 个字符，只用来定位你的数据）" autocomplete="username">
-          </div>
-          <div style="margin-top:10px">
-            <input type="password" id="syncPass" placeholder="密码（至少 8 位）" autocomplete="new-password">
-          </div>
-          <div class="row" style="margin-top:14px">
-            <button class="btn" onclick="Settings.enableSync()">开启同步</button>
-            <button class="btn ghost" onclick="Store.exportFile()">先导出备份</button>
-          </div>
-          <p class="hint">建议先导出一份备份再开——万一以后忘了密码，本地这份还在。</p>
-        </div>
-        <div id="syncOn" style="display:none">
-          <p class="hint" style="margin-top:0">账号：<b id="syncWho" class="mono"></b><br>上次同步：<span id="syncTime"></span></p>
-          <div class="row" style="margin-top:14px">
-            <button class="btn" onclick="Sync.pull(true)">立即同步</button>
-            <button class="btn ghost" onclick="Settings.changePass()">改密码</button>
-            <button class="btn ghost" onclick="Sync.disable()">关闭同步</button>
-          </div>
-          <p class="hint">
+<div style="margin-top:8px"><label class="settings-label" for="arkCodingPlanAccessKey">火山方舟 Coding Plan AccessKey ID</label><input autocomplete="off" id="arkCodingPlanAccessKey" placeholder="火山引擎 AccessKey ID" type="password"/></div>
+<div style="margin-top:10px"><label class="settings-label" for="arkCodingPlanSecretKey">火山方舟 Coding Plan SecretAccessKey</label><input autocomplete="off" id="arkCodingPlanSecretKey" placeholder="火山引擎 SecretAccessKey" type="password"/></div>
+<div style="margin-top:10px"><label class="settings-label" for="deepseekQuotaKey">DeepSeek API Key</label><input autocomplete="off" id="deepseekQuotaKey" placeholder="DeepSeek API Key（sk-…）" type="password"/></div>
+<div style="margin-top:10px"><label class="settings-label" for="minimaxQuotaKey">MiniMax API Key</label><input autocomplete="off" id="minimaxQuotaKey" placeholder="MiniMax API Key" type="password"/></div>
+<div class="row" style="margin-top:14px">
+<button class="btn" onclick="ApiQuota.saveKeys()">保存并查询</button>
+<button class="btn ghost" onclick="ApiQuota.refresh(true)">立即刷新</button>
+<button class="btn ghost" onclick="ApiQuota.clearKeys()">清除密钥</button>
+</div>
+<p class="hint" id="quotaSettingsState">尚未配置</p>
+</div><div class="card settings-sync" id="syncCard">
+<h2>双端同步 <span class="hint" id="syncState"></span></h2>
+<div id="syncOff">
+<p class="hint" style="margin-top:0">
+            开启后手机和电脑登同一个账号，记的东西自动对齐。<br/>
+<b>数据会在你的设备和云端各存一份</b>，本地那份始终在，断网照样能记。<br/>
+            云端那份是明文的——只有知道你密码的人能读，但平台运维理论上能看到。<br/>
+<b>密码忘了就进不去了，没有找回功能。</b>
+</p>
+<div style="margin-top:14px">
+<label class="settings-label" for="syncUser">用户名</label><input autocomplete="username" id="syncUser" placeholder="用户名（3-32 个字符，只用来定位你的数据）" type="text"/>
+</div>
+<div style="margin-top:10px">
+<label class="settings-label" for="syncPass">密码</label><input autocomplete="new-password" id="syncPass" placeholder="密码（至少 8 位）" type="password"/>
+</div>
+<div class="row" style="margin-top:14px">
+<button class="btn" onclick="Settings.enableSync()">开启同步</button>
+<button class="btn ghost" onclick="Store.exportFile()">先导出备份</button>
+</div>
+<p class="hint">建议先导出一份备份再开——万一以后忘了密码，本地这份还在。</p>
+</div>
+<div id="syncOn" style="display:none">
+<p class="hint" style="margin-top:0">账号：<b class="mono" id="syncWho"></b><br/>上次同步：<span id="syncTime"></span></p>
+<div class="row" style="margin-top:14px">
+<button class="btn" onclick="Sync.pull(true)">立即同步</button>
+<button class="btn ghost" onclick="Settings.changePass()">改密码</button>
+<button class="btn ghost" onclick="Sync.disable()">关闭同步</button>
+</div>
+<p class="hint">
             刚在另一台设备改的东西，这边最多等一分钟才看得到（云端缓存机制），
             等不及就点「立即同步」。
           </p>
-        </div>
-      </div>
-      <!-- ==== 双端同步卡片 END ==== -->
-
-      <div class="card">
-        <h2>🔒 简单口令锁</h2>
-        <p class="hint" style="margin-top:0;margin-bottom:12px">用于防止身边人随手翻看，不是高强度加密。口令只保存在当前设备，不参与同步和备份。</p>
-        <div class="row"><input type="password" id="lockPassNew" placeholder="设置或更换口令（至少 4 位）"><button class="btn" onclick="PrivacyLock.set()">保存</button></div>
-        <button class="btn ghost" style="margin-top:10px" onclick="PrivacyLock.clear()">关闭口令锁</button>
-      </div>
-
-      <!-- ==== 功能：主题皮肤 START ==== -->
-      <div class="card wide">
-        <h2>🎨 主题皮肤</h2>
-        <div class="theme-grid" id="themeGrid">
-          <button class="theme-choice" data-theme="pearl" onclick="Theme.set('pearl')"><b>白露歌剧</b><span>珍珠白 · 雾紫 · 舞台金</span></button>
-          <button class="theme-choice" data-theme="dawn" onclick="Theme.set('dawn')"><b>晨光研习</b><span>冰蓝 · 薄荷白 · 清透</span></button>
-          <button class="theme-choice" data-theme="theatre" onclick="Theme.set('theatre')"><b>歌剧舞台</b><span>深蓝紫 · 暖金 · 夜色</span></button>
-        </div>
-        <p class="hint">皮肤选择保存在当前设备；手机和电脑可以各自选择。</p>
-      </div>
-      <!-- ==== 功能：主题皮肤 END ==== -->
-
-      <div class="card wide">
-        <h2>🖥️ 界面版本</h2>
-        <div class="layout-grid" id="layoutGrid">
-          <button class="layout-choice" data-layout="auto" onclick="LayoutMode.set('auto')"><b>◫</b>跟随设备</button>
-          <button class="layout-choice" data-layout="mobile" onclick="LayoutMode.set('mobile')"><b>▯</b>手机版</button>
-          <button class="layout-choice" data-layout="desktop" onclick="LayoutMode.set('desktop')"><b>▣</b>电脑版</button>
-        </div>
-        <p class="hint">只影响当前设备。手机强制电脑版时会显示完整宽屏画布，可横向浏览。</p>
-      </div>
-
-      <div class="card">
-        <h2>⚠️ 危险操作</h2>
-        <button class="btn danger" onclick="Store.wipe()">清空所有数据</button>
-        <p class="hint">清空前请确认已经导出过备份，这个操作无法撤销。</p>
-      </div>
-
-      <div class="card">
-        <p class="hint" style="margin:0;text-align:center">
-          水神剧场<br>
-          <span style="opacity:.6">由 不一书个人工作台生成器 生成</span>
-        </p>
-      </div>
-    </section>
+</div>
+</div><div class="card settings-danger">
+<h2>危险操作</h2>
+<button class="btn danger" onclick="Store.wipe()">清空所有数据</button>
+<p class="hint">清空前请确认已经导出过备份，这个操作无法撤销。</p>
+</div><div class="card settings-about">
+<p class="hint" style="margin:0;text-align:center">
+          水神剧场<br/>
+<span style="opacity:.6">由 不一书个人工作台生成器 生成</span>
+</p>
+</div></section>
     <!-- ==== 功能：设置 END ==== -->
 
   </main>
@@ -1237,6 +1177,19 @@ const DesktopUI = {
    App · 路由与启动
    每加一个功能，在 routes 里加一条，侧边栏自动就有了。
    ═══════════════════════════════════════════════════════════ */
+const NAV_SVG = {
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 9h18"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>',
+  lib:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7V4z"/></svg>',
+  pen:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>',
+  chart:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>',
+  gear:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83 2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
+};
+
 const App = {
   routes: [
     { id:'home',     group:'今日舞台', element:'hydro', name:'主页', onShow: () => Home.render() },
@@ -1250,6 +1203,7 @@ const App = {
     { id:'settings', group:'系统', element:'geo', name:'设置',  onShow: () => Settings.render() }
   ],
 
+  goFocus(){this.go("home");document.getElementById("dashPomoCard").scrollIntoView({block:"center",behavior:"smooth"});},
   go(id){
     document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
     document.getElementById('page-' + id)?.classList.add('on');
@@ -1263,19 +1217,7 @@ const App = {
 
   init(){
     Store.migrate();          // 旧版数据补齐 id，无感升级
-    // 渲染侧边栏
-    const groups = [];
-    this.routes.forEach(r => {
-      let group = groups.find(g => g.name === r.group);
-      if (!group) groups.push(group = {name:r.group, routes:[]});
-      group.routes.push(r);
-    });
-    document.getElementById('nav').innerHTML = groups.map(g =>
-      `<div class="nav-group"><div class="nav-group-label">${g.name}</div>${g.routes.map(r =>
-        `<button data-id="${r.id}" onclick="App.go('${r.id}')" aria-label="${r.name}">
-           <img class="ico" src="assets/sourced/elements/element_${r.element}.png" alt="${r.name}元素图标"><span class="nav-label">${r.name}</span>
-         </button>`).join('')}</div>`).join('');
-
+    document.getElementById("nav").innerHTML = '<button data-id="home" onclick="App.go(\'home\')" aria-label="工作台">' + NAV_SVG.home + '<span class="nav-label">工作台</span></button><button data-id="plan" onclick="App.go(\'plan\')" aria-label="今日计划">' + NAV_SVG.cal + '<span class="nav-label">今日计划</span></button><button data-id="focus" onclick="App.goFocus()" aria-label="专注计时">' + NAV_SVG.clock + '<span class="nav-label">专注计时</span></button><button data-id="papers" onclick="App.go(\'papers\')" aria-label="论文研读">' + NAV_SVG.book + '<span class="nav-label">论文研读</span></button><button data-id="writing" onclick="App.go(\'writing\')" aria-label="写作进度">' + NAV_SVG.pen + '<span class="nav-label">写作进度</span></button><button data-id="books" onclick="App.go(\'books\')" aria-label="读书进度">' + NAV_SVG.lib + '<span class="nav-label">读书进度</span></button><button data-id="diary" onclick="App.go(\'diary\')" aria-label="日记">' + NAV_SVG.doc + '<span class="nav-label">日记</span></button><button data-id="fitness" onclick="App.go(\'fitness\')" aria-label="健康管理">' + NAV_SVG.heart + '<span class="nav-label">健康管理</span></button><button data-id="recap" onclick="App.go(\'recap\')" aria-label="周复盘">' + NAV_SVG.chart + '<span class="nav-label">周复盘</span></button><button data-id="settings" onclick="App.go(\'settings\')" aria-label="设置">' + NAV_SVG.gear + '<span class="nav-label">设置</span></button>';
     // 回到上次看的那一页
     const last = Store.get('_lastPage');
     this.go(this.routes.some(r => r.id === last) ? last : this.routes[0].id);
