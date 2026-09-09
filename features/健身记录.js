@@ -1,12 +1,13 @@
 /* ==== 功能：健身记录 START ==== */
 const Fitness = {
+  editingId:null,
   items(){return Store.list('fitness',(a,b)=>(b.date||'').localeCompare(a.date||''));},
   render(){
     const dateEl=document.getElementById('fitnessDate');
     if(dateEl&&!dateEl.value)dateEl.value=Util.today();
     const list=this.items(),mins=list.reduce((s,x)=>s+(Number(x.minutes)||0),0);
     document.getElementById('fitnessSummary').innerHTML=`<div class="field-grid two"><div class="metric"><b>${list.length}</b><span>训练次数</span></div><div class="metric"><b>${mins}</b><span>累计分钟</span></div></div>`;
-    document.getElementById('fitnessList').innerHTML=list.length?list.slice(0,20).map(x=>`<div class="item"><div class="grow"><b>${Util.esc(x.type)}</b> · ${Number(x.minutes)||0} 分钟<div class="item-meta">${Util.esc(x.date)}</div>${x.note?`<div class="note">${Util.esc(x.note)}</div>`:''}</div><button class="del" onclick="Fitness.del('${x.id}')">✕</button></div>`).join(''):'<div class="empty">还没有训练记录</div>';
+    document.getElementById('fitnessList').innerHTML=list.length?list.slice(0,20).map(x=>x.id===this.editingId?`<div class="item"><div class="grow"><div class="field-grid two"><input id="fitnessInlineType" value="${Util.esc(x.type)}" aria-label="训练项目"><input id="fitnessInlineMinutes" type="number" min="1" value="${Number(x.minutes)||''}" aria-label="训练时长"></div><input id="fitnessInlineDate" type="date" value="${Util.esc(x.date||Util.today())}"><textarea id="fitnessInlineNote">${Util.esc(x.note||'')}</textarea><div class="row"><button class="btn" onclick="Fitness.saveEdit()">保存修改</button><button class="btn ghost" onclick="Fitness.cancelEdit()">取消</button></div></div></div>`:`<div class="item"><div class="grow"><b>${Util.esc(x.type)}</b> · ${Number(x.minutes)||0} 分钟<div class="item-meta">${Util.esc(x.date)}</div>${x.note?`<div class="note">${Util.esc(x.note)}</div>`:''}</div><button class="btn ghost" onclick="Fitness.edit('${x.id}')">编辑</button><button class="del" onclick="Fitness.del('${x.id}')">✕</button></div>`).join(''):'<div class="empty">还没有训练记录</div>';
   },
   /* 快捷设置记录日期：0=今天，-1=昨天 */
   setDate(offset){
@@ -28,6 +29,9 @@ const Fitness = {
     this.render();
     UI.toast(date===Util.today()?'训练已记录':`已补记 ${date} 的训练`);
   },
+  edit(id){if(this.items().some(x=>x.id===id)){this.editingId=id;this.render();}},
+  cancelEdit(){this.editingId=null;this.render();},
+  saveEdit(){const x=this.items().find(v=>v.id===this.editingId),type=document.getElementById('fitnessInlineType').value.trim(),minutes=Number(document.getElementById('fitnessInlineMinutes').value||0),note=document.getElementById('fitnessInlineNote').value.trim(),date=document.getElementById('fitnessInlineDate').value||x.date;if(!x||!type||minutes<1)return UI.toast('填写训练项目和时长');if(date>Util.today())return UI.toast('不能记录未来的训练');Store.upsert('fitness',Object.assign({},x,{type,minutes,note,date}));this.editingId=null;this.render();UI.toast('训练记录已更新');},
   del(id){if(confirm('删除这条训练记录？')){Store.softDelete('fitness',id);this.render();}}
 };
 /* ==== 功能：健身记录 END ==== */

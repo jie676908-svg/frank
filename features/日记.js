@@ -38,7 +38,7 @@ const Diary = {
     UI.toast(date===Util.today()?'日记已收好':`已补记 ${date} 的日记`);
   },
   edit(id){if(!this.items().some(v=>v.id===id))return;this.editingId=id;this.render();setTimeout(()=>{const el=document.getElementById('diaryInlineText');if(el){el.focus();el.scrollIntoView({behavior:'smooth',block:'center'});}},80);},
-  saveEdit(){const x=this.items().find(v=>v.id===this.editingId);if(!x)return UI.toast('没有找到这篇日记');const date=document.getElementById('diaryInlineDate').value||x.date||Util.today(),mood=document.getElementById('diaryInlineMood').value.trim(),text=document.getElementById('diaryInlineText').value.trim();if(!text)return UI.toast('日记内容不能留空');Store.upsert('diary',Object.assign({},x,{date,mood,text}));this.editingId=null;this.render();UI.toast('日记已更新，并会参与双端同步');},
+  saveEdit(){const x=this.items().find(v=>v.id===this.editingId);if(!x)return UI.toast('没有找到这篇日记');const date=document.getElementById('diaryInlineDate').value||x.date||Util.today(),mood=document.getElementById('diaryInlineMood').value.trim(),text=document.getElementById('diaryInlineText').value.trim();if(!text)return UI.toast('日记内容不能留空');if(date>Util.today())return UI.toast('不能写未来的日记');Store.upsert('diary',Object.assign({},x,{date,mood,text}));this.editingId=null;this.render();UI.toast('日记已更新，并会参与双端同步');},
   cancelEdit(){this.editingId=null;this.render();},
   del(id){if(confirm('删除这篇日记？')){if(this.editingId===id)this.cancelEdit();Store.softDelete('diary',id);this.render();}}
 };

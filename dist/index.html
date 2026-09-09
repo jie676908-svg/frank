@@ -638,35 +638,35 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
     <section class="page" id="page-plan">
       <div class="page-title">今日计划</div>
       <div class="page-sub" id="planDate"></div>
-      <div class="card wide"><h2>📅 今日剧目</h2><div id="planList"></div><div class="field-grid two" style="margin-top:12px"><input id="planTime" type="time"><input id="planText" type="text" placeholder="新增计划，回车保存"></div><button class="btn" style="margin-top:10px" onclick="Plan.add()">添加计划</button></div>
+      <div class="card wide"><h2>📅 今日剧目</h2><div class="row"><input id="planDay" type="date" aria-label="计划日期" onchange="Plan.setDay(this.value)"><button class="btn ghost" onclick="Plan.today()">今天</button></div><div id="planList"></div><div class="field-grid two" style="margin-top:12px"><input id="planTime" type="time"><input id="planText" type="text" placeholder="新增计划，回车保存"></div><button class="btn" style="margin-top:10px" onclick="Plan.add()">添加计划</button></div>
     </section>
     <!-- ==== 功能：首页计划 END ==== -->
 
     <!-- ==== 功能：论文研读 START ==== -->
     <section class="page" id="page-papers"><div class="page-title">论文研读</div><div class="page-sub">资源入口、待读队列与观点摘记</div>
       <div class="card"><h2>🔗 学术资源</h2><div style="display:grid;gap:9px"><a class="link-card" href="https://www.cnki.net/" target="_blank" rel="noopener">中国知网 <span>↗</span></a><a class="link-card" href="https://www.rdfybk.com/" target="_blank" rel="noopener">人大复印报刊资料 <span>↗</span></a></div></div>
-      <div class="card wide"><h2>📑 阅读队列</h2><div class="field-grid two"><input id="paperTitle" type="text" placeholder="论文题目"><select id="paperStatus"><option>待读</option><option>在读</option><option>读完</option></select></div><textarea id="paperNote" placeholder="核心观点、问题意识或待查线索"></textarea><button class="btn" onclick="Papers.add()">加入队列</button><div id="paperList"></div></div>
+      <div class="card wide"><h2>📑 阅读队列</h2><div class="field-grid two"><input id="paperTitle" type="text" placeholder="论文题目"><select id="paperStatus"><option>待读</option><option>在读</option><option>读完</option></select></div><textarea id="paperNote" placeholder="核心观点、问题意识或待查线索"></textarea><div class="row"><input id="paperDate" type="date" aria-label="研读记录日期"><button class="btn" onclick="Papers.add()">加入队列</button></div><p class="hint">可选择前几天补记；已有条目可直接编辑。</p><div id="paperList"></div></div>
     </section>
     <!-- ==== 功能：论文研读 END ==== -->
 
     <!-- ==== 功能：写作进度 START ==== -->
     <section class="page" id="page-writing"><div class="page-title">写作进度</div><div class="page-sub">把宏大论文拆成今天能推进的一小步</div>
-      <div class="card"><h2>✍️ 今日写作</h2><div class="field-grid two"><input id="writingProject" type="text" placeholder="论文或章节名称"><input id="writingWords" type="number" min="0" placeholder="今日新增字数"></div><textarea id="writingNote" placeholder="今天推进了什么？下一步是什么？"></textarea><button class="btn" onclick="Writing.add()">记录进展</button></div><div class="card wide"><div id="writingSummary"></div><div id="writingList"></div></div>
+      <div class="card"><h2>✍️ 今日写作</h2><div class="field-grid two"><input id="writingProject" type="text" placeholder="论文或章节名称"><input id="writingWords" type="number" min="0" placeholder="今日新增字数"></div><textarea id="writingNote" placeholder="今天推进了什么？下一步是什么？"></textarea><div class="row"><input id="writingDate" type="date" aria-label="写作记录日期"><button class="btn" onclick="Writing.add()">记录进展</button></div><p class="hint">选择过去日期即可补记。</p></div><div class="card wide"><div id="writingSummary"></div><div id="writingList"></div></div>
     </section>
     <!-- ==== 功能：写作进度 END ==== -->
 
     <!-- ==== 功能：日记 START ==== -->
-    <section class="page" id="page-diary"><div class="page-title">日记</div><div class="page-sub">自动保存草稿；内容参与双端同步</div><div class="card wide"><textarea id="diaryText" style="min-height:220px" placeholder="今天发生了什么……" oninput="Diary.draft()"></textarea><div class="row" style="margin-top:10px"><input id="diaryMood" type="text" placeholder="今日心情（可选）"><button class="btn" onclick="Diary.save()">收进日记</button></div><p class="hint" id="diaryDraftState"></p></div><div class="card wide"><h2>📓 往日记录</h2><div id="diaryList"></div></div></section>
+    <section class="page" id="page-diary"><div class="page-title">日记</div><div class="page-sub">自动保存草稿；内容参与双端同步</div><div class="card wide"><textarea id="diaryText" style="min-height:220px" placeholder="今天发生了什么……" oninput="Diary.draft()"></textarea><div class="row" style="margin-top:10px"><input id="diaryMood" type="text" placeholder="今日心情（可选）"><input id="diaryDate" type="date" aria-label="日记日期" onchange="Diary.draft()"><button class="btn" onclick="Diary.save()">收进日记</button></div><p class="hint" id="diaryDraftState"></p></div><div class="card wide"><h2>📓 往日记录</h2><div id="diaryList"></div></div></section>
     <!-- ==== 功能：日记 END ==== -->
 
     <!-- ==== 功能：读书进度 START ==== -->
-    <section class="page" id="page-books"><div class="page-title">读书进度</div><div class="page-sub">书目、页码与读书笔记</div><div class="card"><div class="field-grid two"><input id="bookTitle" type="text" placeholder="书名"><input id="bookProgress" type="number" min="0" max="100" placeholder="进度 %"></div><textarea id="bookNote" placeholder="这次读到了哪里，有什么想法"></textarea><button class="btn" onclick="Books.add()">保存进度</button></div><div class="card wide"><div id="bookList"></div></div></section>
+    <section class="page" id="page-books"><div class="page-title">读书进度</div><div class="page-sub">书目、页码与读书笔记</div><div class="card"><div class="field-grid two"><input id="bookTitle" type="text" placeholder="书名"><input id="bookProgress" type="number" min="0" max="100" placeholder="进度 %"></div><textarea id="bookNote" placeholder="这次读到了哪里，有什么想法"></textarea><div class="row"><input id="bookDate" type="date" aria-label="读书记录日期"><button class="btn" onclick="Books.add()">保存进度</button></div><p class="hint">选择过去日期即可补记。</p></div><div class="card wide"><div id="bookList"></div></div></section>
     <!-- ==== 功能：读书进度 END ==== -->
 
     <!-- ==== 功能：健身记录 START ==== -->
-    <section class="page" id="page-fitness"><div class="page-title">健康管理</div><div class="page-sub">训练记录与每日健康习惯放在一起</div><div class="card"><h2>🏋️ 健身记录</h2><div class="field-grid two"><input id="fitnessType" type="text" placeholder="训练项目"><input id="fitnessMinutes" type="number" min="1" placeholder="时长（分钟）"></div><textarea id="fitnessNote" placeholder="动作、组数或训练感受"></textarea><button class="btn" onclick="Fitness.add()">完成训练</button></div><div class="card wide"><div id="fitnessSummary"></div><div id="fitnessList"></div></div>
+    <section class="page" id="page-fitness"><div class="page-title">健康管理</div><div class="page-sub">训练记录与每日健康习惯放在一起</div><div class="card"><h2>🏋️ 健身记录</h2><div class="field-grid two"><input id="fitnessType" type="text" placeholder="训练项目"><input id="fitnessMinutes" type="number" min="1" placeholder="时长（分钟）"></div><textarea id="fitnessNote" placeholder="动作、组数或训练感受"></textarea><div class="row"><input id="fitnessDate" type="date" aria-label="训练日期"><button class="btn" onclick="Fitness.add()">完成训练</button></div><p class="hint">选择日期可补记前几天；已有记录可编辑。</p></div><div class="card wide"><div id="fitnessSummary"></div><div id="fitnessList"></div></div>
       <!-- ==== 功能：健康打卡 START ==== -->
-      <div class="card wide"><h2>❤️ 健康打卡</h2><div class="check-grid" id="healthGrid"></div><p class="hint">点一下完成；也可以增加自己的习惯。</p><div class="row"><input id="healthHabit" type="text" placeholder="例如：拉伸 10 分钟"><button class="btn" onclick="Health.addHabit()">增加</button></div></div><div class="card"><h2>今日完成</h2><div class="hero num" id="healthCount">0</div></div>
+      <div class="card wide"><h2>❤️ 健康打卡</h2><div class="row"><input id="healthDate" type="date" aria-label="健康打卡日期" onchange="Health.render()"></div><div class="check-grid" id="healthGrid"></div><p class="hint">选择日期即可补记或修改当天的打卡；也可以增加自己的习惯。</p><div class="row"><input id="healthHabit" type="text" placeholder="例如：拉伸 10 分钟"><button class="btn" onclick="Health.addHabit()">增加</button></div></div><div class="card"><h2 id="healthCountTitle">今日完成</h2><div class="hero num" id="healthCount">0</div></div>
       <!-- ==== 功能：健康打卡 END ==== -->
     </section>
     <!-- ==== 功能：健身记录 END ==== -->
@@ -938,6 +938,9 @@ const Store = (() => {
     setDaily(key, val){ return this.set(key + ':' + Util.today(), val); },
     listDaily(key, sort){ return this.list(key + ':' + Util.today(), sort); },
     upsertDaily(key, item){ return this.upsert(key + ':' + Util.today(), item); },
+    listDailyAt(key, date, sort){ return this.list(key + ':' + date, sort); },
+    upsertDailyAt(key, date, item){ return this.upsert(key + ':' + date, item); },
+    softDeleteDailyAt(key, date, id){ return this.softDelete(key + ':' + date, id); },
     incrDaily(key, n = 1){ return this.incr(key + ':' + Util.today(), n); },
     decrDaily(key){ return this.decr(key + ':' + Util.today()); },
     countDaily(key){ return this.count(key + ':' + Util.today()); },
@@ -1538,12 +1541,12 @@ const Recap = {
 </script>
 <script src="features/首页计划.js"></script>
 <script src="features/剧场主页.js"></script>
-<script src="features/论文研读.js"></script>
-<script src="features/写作进度.js"></script>
-<script src="features/日记.js"></script>
-<script src="features/读书进度.js"></script>
-<script src="features/健身记录.js?v=20260907-7"></script>
-<script src="features/健康打卡.js"></script>
+<script src="features/论文研读.js?v=20260909-1"></script>
+<script src="features/写作进度.js?v=20260909-2"></script>
+<script src="features/日记.js?v=20260909-1"></script>
+<script src="features/读书进度.js?v=20260909-2"></script>
+<script src="features/健身记录.js?v=20260909-1"></script>
+<script src="features/健康打卡.js?v=20260909-1"></script>
 <script src="features/主题皮肤.js"></script>
 <script src="features/番茄钟.js"></script>
 <script src="features/API额度.js"></script>
