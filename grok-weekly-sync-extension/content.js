@@ -17,5 +17,11 @@ function send() {
   if (usage && key !== last) { last = key; chrome.runtime.sendMessage({ type: 'usage', usage }); }
 }
 
+if (location.hostname === 'jie676908-svg.github.io') {
+  window.addEventListener('message', event => {
+    if (event.source === window && event.data?.type === 'GROK_WORKBENCH_REFRESH') chrome.runtime.sendMessage({ type: 'refresh_from_workbench' }, response => window.postMessage({ type: 'GROK_WORKBENCH_RESULT', response }, location.origin));
+  });
+}
+
 send();
 new MutationObserver(() => { clearTimeout(pending); pending = setTimeout(send, 800); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
