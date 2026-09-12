@@ -125,11 +125,15 @@ export default {
         .map(x => ({ name: String(x.name || '').slice(0, 40), used: Math.max(0, Math.min(100, Number(x.used) || 0)) }))
         .filter(x => x.name) : [];
       const snapshot = { used, resetAt: String(usage.resetAt || '').slice(0, 80), breakdown, updatedAt: now };
-      await put(`grok-usage:${uid}`, snapshot);
+      const cacheKey = new Request(`https://grok-usage-cache.invalid/${uid}`);
+      await caches.default.put(cacheKey, new Response(JSON.stringify(snapshot), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=86400' } }));
       return json({ ok: true, grokWeekly: snapshot });
     }
 
-    if (action === 'quota') return json({ ok: true, grokWeekly: await get(`grok-usage:${uid}`) });
+    if (action === 'quota') {
+      const cached = await caches.default.match(new Request(`https://grok-usage-cache.invalid/${uid}`));
+      return json({ ok: true, grokWeekly: cached ? await cached.json() : null });
+    }
 
     if (action === 'chpass') {
       const np = String(body.newPass || '');
