@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "工作台 · Grok 周额度同步",
+  "version": "1.0.0",
+  "description": "从已登录的 Grok 使用量页面同步每周限额到个人工作台。",
+  "permissions": ["storage"],
+  "host_permissions": ["https://grok.com/*", "https://water-god-sync.jie676908.workers.dev/*"],
+  "content_scripts": [{"matches": ["https://grok.com/*"], "js": ["content.js"], "run_at": "document_idle"}],
+  "background": {"service_worker": "service-worker.js"},
+  "action": {"default_title": "同步 Grok 周额度", "default_popup": "popup.html"}
+}

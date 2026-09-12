@@ -718,7 +718,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 <button class="btn ghost" onclick="PrivacyLock.clear()" style="margin-top:10px">关闭口令锁</button>
 </div><div class="card settings-quota">
 <h2>Grok 实时额度</h2>
-<p class="hint" style="margin-top:0;margin-bottom:12px">余额通过服务端安全查询，不会暴露密钥。若提示权限不足，请在 xAI Console 为当前 Management Key 开启 Billing Read 权限。</p>
+<p class="hint" style="margin-top:0;margin-bottom:12px">安装 Grok 周额度同步扩展后，工作台会显示你的每周订阅限额、使用比例和重置时间。扩展不会读取聊天内容或 API Key。</p>
 <div class="row" style="margin-top:14px"><button class="btn" onclick="ApiQuota.refresh(true)">立即刷新</button></div>
 <p class="hint" id="quotaSettingsState">等待查询</p>
 </div><div class="card settings-sync" id="syncCard">

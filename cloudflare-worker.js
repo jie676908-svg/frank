@@ -115,6 +115,22 @@ export default {
     }
     if (rate.n) await put(kRate, { n: 0, until: 0 });
 
+    // Chrome 扩展只上传 Grok「使用量」页的周用量摘要，不接触聊天内容或 API Key。
+    if (action === 'grok_usage') {
+      const usage = body.usage || {};
+      const used = Number(usage.used);
+      if (!Number.isFinite(used) || used < 0 || used > 100) return json({ error: '周用量数据无效' }, 400);
+      const breakdown = Array.isArray(usage.breakdown) ? usage.breakdown
+        .slice(0, 8)
+        .map(x => ({ name: String(x.name || '').slice(0, 40), used: Math.max(0, Math.min(100, Number(x.used) || 0)) }))
+        .filter(x => x.name) : [];
+      const snapshot = { used, resetAt: String(usage.resetAt || '').slice(0, 80), breakdown, updatedAt: now };
+      await put(`grok-usage:${uid}`, snapshot);
+      return json({ ok: true, grokWeekly: snapshot });
+    }
+
+    if (action === 'quota') return json({ ok: true, grokWeekly: await get(`grok-usage:${uid}`) });
+
     if (action === 'chpass') {
       const np = String(body.newPass || '');
       if (np.length < 8) return json({ error: '新密码至少 8 位' }, 400);
