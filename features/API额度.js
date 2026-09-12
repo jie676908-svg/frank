@@ -30,7 +30,7 @@ const ApiQuota = {
     const miniSub=k.minimax?(m?this.fmtTime(m.reset):'等待查询'):'尚未配置 · 在设置中添加密钥';
     const ark=c.ark,arkWindow=ark?.windows?.[0],arkPct=arkWindow?Math.max(0,100-Number(arkWindow.used||0)):0,arkVal=arkWindow?`${arkPct.toFixed(0)}%`:'—',arkLabels={session:'本次会话',weekly:'本周',monthly:'本月'},arkReset=arkWindow?.reset?(arkWindow.reset<1e12?arkWindow.reset*1000:arkWindow.reset):0,arkSub=k.arkAk&&k.arkSk?(arkWindow?`${arkLabels[arkWindow.name]||arkWindow.name}${arkReset?` · ${new Date(arkReset).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})} 重置`:''}`:c.errors?.ark?`查询失败 · ${c.errors.ark}`:'等待查询'):'尚未配置 · 在设置中添加 AccessKey / SecretKey';
     const cents=Number(c.grok?.total?.val??c.grok?.total?.value??0),grokVal=c.grok?.total?`$${(cents/100).toFixed(2)}`:'—',grokSub=c.grok?.total?`实时余额 · ${new Date(c.grok.at||c.at).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`:(c.errors?.grok||'等待查询');
-    return this.qrow(icStar,'Codex 订阅限额','—',0,'订阅限额仅能由本机 Codex 读取')+this.qrow(icWave,'Grok API 余额',grokVal,0,grokSub);
+    return this.qrow(icWave,'Grok API 余额',grokVal,0,grokSub);
   },
   render(){
     const k=this.keys(),c=Store.get('_quotaCache',{}),d=null,m=null;

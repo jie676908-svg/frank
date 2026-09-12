@@ -628,7 +628,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
         <div class="card dash-hero"><div class="hero-picture"><img id="heroPortrait" src="assets/plates/portrait.png" alt="芙宁娜"><button class="hero-nav prev" onclick="Home.prevImage()" aria-label="上一张立绘">‹</button><button class="hero-nav next" onclick="Home.nextImage()" aria-label="下一张立绘">›</button><div id="heroDots" class="hero-dots" aria-label="选择立绘"></div></div><button class="dash-hero-info" onclick="Home.nextQuote()" title="点击切换台词"><span id="homeQuote">今日的舞台，准备开幕。</span><span class="flourish" aria-hidden="true">◇</span></button></div>
         <div class="card dash-projects"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V6h12v14zM8 6V3h4v3M8 10h4M8 14h4M16 11h4v9H4"/></svg>项目概览</h2><div id="dashProjects"></div></div>
         <div class="card dash-stats"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M7 16v-5M12 16V6M17 16V9"/></svg>本周专注</h2><span class="chart-unit">单位：分钟</span><div class="chart-area"><div id="chartAxis" class="chart-axis"></div><div class="chart-main"><div id="dashStatsBars" class="dash-bars"></div><div class="dash-bar-days"><span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span><span>周日</span></div></div></div><div id="dashStatsTotal" class="dash-stats-total"></div></div>
-        <div class="card dash-api"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7zM3 7l9 5 9-5M12 12v10M8 9l4-2 4 2v5l-4 2-4-2z"/></svg>AI 服务额度</h2><div id="homeApiQuota"></div><button class="card-bottom-link" onclick="App.go('settings')">查看详情<span>›</span></button></div>
+        <div class="card dash-api"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7zM3 7l9 5 9-5M12 12v10M8 9l4-2 4 2v5l-4 2-4-2z"/></svg>Grok 实时额度</h2><div id="homeApiQuota"></div><button class="card-bottom-link" onclick="App.go('settings')">查看详情<span>›</span></button></div>
         <div class="card dash-remind"><h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M10 21h4"/></svg>提醒与备忘</h2><div id="dashRemindList"></div><div id="dashRemindFoot" class="dash-remind-foot"></div></div>
       </div>
     </section>
@@ -717,22 +717,10 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 <div class="row"><label class="settings-label" for="lockPassNew">设置或更换口令</label><input id="lockPassNew" placeholder="设置或更换口令（至少 4 位）" type="password"/><button class="btn" onclick="PrivacyLock.set()">保存</button></div>
 <button class="btn ghost" onclick="PrivacyLock.clear()" style="margin-top:10px">关闭口令锁</button>
 </div><div class="card settings-quota">
-<h2>AI 服务额度查询</h2>
-<p class="hint" style="margin-top:0;margin-bottom:12px">
-          在此填入火山方舟、DeepSeek 与 MiniMax 的密钥，工作台会调用官方接口查询余额与剩余额度。<br/>
-          火山方舟额度查询使用控制台 AccessKey ID / SecretAccessKey（不是 ark- 推理 API Key）；密钥仅保存在当前设备的 localStorage 中，不参与云端同步。<br/>
-          余额与剩余次数展示在右侧「API 额度」面板里。
-        </p>
-<div style="margin-top:8px"><label class="settings-label" for="arkCodingPlanAccessKey">火山方舟 Coding Plan AccessKey ID</label><input autocomplete="off" id="arkCodingPlanAccessKey" placeholder="火山引擎 AccessKey ID" type="password"/></div>
-<div style="margin-top:10px"><label class="settings-label" for="arkCodingPlanSecretKey">火山方舟 Coding Plan SecretAccessKey</label><input autocomplete="off" id="arkCodingPlanSecretKey" placeholder="火山引擎 SecretAccessKey" type="password"/></div>
-<div style="margin-top:10px"><label class="settings-label" for="deepseekQuotaKey">DeepSeek API Key</label><input autocomplete="off" id="deepseekQuotaKey" placeholder="DeepSeek API Key（sk-…）" type="password"/></div>
-<div style="margin-top:10px"><label class="settings-label" for="minimaxQuotaKey">MiniMax API Key</label><input autocomplete="off" id="minimaxQuotaKey" placeholder="MiniMax API Key" type="password"/></div>
-<div class="row" style="margin-top:14px">
-<button class="btn" onclick="ApiQuota.saveKeys()">保存并查询</button>
-<button class="btn ghost" onclick="ApiQuota.refresh(true)">立即刷新</button>
-<button class="btn ghost" onclick="ApiQuota.clearKeys()">清除密钥</button>
-</div>
-<p class="hint" id="quotaSettingsState">尚未配置</p>
+<h2>Grok 实时额度</h2>
+<p class="hint" style="margin-top:0;margin-bottom:12px">余额通过服务端安全查询，不会暴露密钥。若提示权限不足，请在 xAI Console 为当前 Management Key 开启 Billing Read 权限。</p>
+<div class="row" style="margin-top:14px"><button class="btn" onclick="ApiQuota.refresh(true)">立即刷新</button></div>
+<p class="hint" id="quotaSettingsState">等待查询</p>
 </div><div class="card settings-sync" id="syncCard">
 <h2>双端同步 <span class="hint" id="syncState"></span></h2>
 <div id="syncOff">
@@ -806,9 +794,9 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent)}
 
     <!-- ==== 功能：API 额度 START ==== -->
     <div class="desk-panel">
-      <h3>API 额度</h3>
+      <h3>Grok 额度</h3>
       <div id="apiQuotaRail">
-        <p class="hint" style="margin:6px 0 0">尚未配置密钥，请到设置中填写。</p>
+        <p class="hint" style="margin:6px 0 0">正在查询 Grok 额度…</p>
       </div>
     </div>
     <!-- ==== 功能：API 额度 END ==== -->
