@@ -10,5 +10,9 @@ async function sync(usage) {
   } catch (e) { await chrome.storage.local.set({ last: { usage, status: '网络错误：' + e.message, at: Date.now() } }); }
 }
 
-chrome.runtime.onMessage.addListener(message => { if (message?.type === 'usage') sync(message.usage); });
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message?.type !== 'usage') return;
+  sync(message.usage).then(() => sendResponse({ ok: true })).catch(() => sendResponse({ ok: false }));
+  return true;
+});
 chrome.runtime.onInstalled.addListener(() => chrome.storage.local.set({ last: { status: '请先打开 Grok 的使用量页面' } }));

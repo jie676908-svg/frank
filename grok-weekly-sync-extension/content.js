@@ -2,7 +2,7 @@ function readUsage() {
   const text = document.body?.innerText || '';
   const imageValues = [...document.images].map(i => i.alt || i.getAttribute('aria-label') || '').join(' ');
   const all = `${text}\n${imageValues}`;
-  const used = all.match(/(\d{1,3})%\s*(?:已使用|used)/i)?.[1] || all.match(/(?:已使用|used)\s*(\d{1,3})%/i)?.[1] || imageValues.match(/\b(\d{1,3})%\b/)?.[1];
+  const used = all.match(/(\d{1,3})%\s*(?:已使用|used)/i)?.[1] || all.match(/(?:已使用|used)\s*(\d{1,3})%/i)?.[1] || imageValues.match(/(\d{1,3})%/)?.[1];
   if (used === undefined) return null;
   const reset = text.match(/重置\s*([^\n]+?)(?=\s*(?:Grok|聊天|Chat|Build|$))/i)?.[1]?.trim() || '';
   const breakdown = [];
