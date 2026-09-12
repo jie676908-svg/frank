@@ -13,7 +13,8 @@ const ApiQuota = {
     const r=await fetch(`https://${host}/?${query}`,{method:'POST',headers:{'Content-Type':'application/json; charset=utf-8','X-Date':date,'X-Content-Sha256':payload,Authorization:authorization},body});const j=await r.json().catch(()=>({}));if(!r.ok||j.ResponseMetadata?.Error)throw new Error(j.ResponseMetadata?.Error?.Message||j.message||`查询失败 ${r.status}`);
     const usage=j.Result?.QuotaUsage||j.Result?.Usages||j.Result?.Details||j.QuotaUsage||[];if(!usage.length)throw new Error('未找到有效的 Coding Plan 套餐');const order={session:0,weekly:1,monthly:2},windows=usage.map(x=>({name:String(x.Level||x.Type||x.Period||x.Label||x.Window||'套餐额度').toLowerCase(),used:Number(x.Percent??x.UsedPercent??x.UsagePercent??x.percent??0),reset:Number(x.ResetTimestamp??x.ResetTime??x.ResetAt??x.ExpiredAt??0)})).filter(x=>['session','weekly','monthly'].includes(x.name)).sort((a,b)=>(order[a.name]??9)-(order[b.name]??9));if(!windows.length)throw new Error('未返回可识别的套餐窗口');return {windows};
   },
-  async refresh(loud=false){if(this.busy)return; if(!Sync.on()){this.state('开启双端同步后可安全查询 Grok 实时额度');return loud&&UI.toast('请先开启双端同步');}this.busy=true;this.state('正在查询 Grok…');try{const j=await Sync.call('quota');Store.set('_quotaCache',{grok:j.grok,at:Date.now(),errors:{}});if(loud)UI.toast('Grok 额度已更新');}catch(e){Store.set('_quotaCache',{at:Date.now(),errors:{grok:e.message}});if(loud)UI.toast(e.message);}finally{this.busy=false;this.render();}},
+  cents(v){return Math.abs(Number(v?.val??v?.value??0));},
+  async refresh(loud=false){if(this.busy)return; if(!Sync.on()){this.state('开启双端同步后可安全查询 Grok 实时额度');return loud&&UI.toast('请先开启双端同步');}this.busy=true;this.state('正在查询 Grok…');try{const j=await Sync.call('quota'),old=Store.get('_quotaCache',{}),balance=this.cents(j.grok?.total),baseline=Math.max(Number(old.grok?.baseline||0),balance),grok={...j.grok,baseline};Store.set('_quotaCache',{grok,at:Date.now(),errors:{}});if(loud)UI.toast('Grok 额度已更新');}catch(e){Store.set('_quotaCache',{at:Date.now(),errors:{grok:e.message}});if(loud)UI.toast(e.message);}finally{this.busy=false;this.render();}},
   saveKeys(){const a=document.getElementById('arkCodingPlanAccessKey')?.value.trim(),s=document.getElementById('arkCodingPlanSecretKey')?.value.trim(),d=document.getElementById('deepseekQuotaKey')?.value.trim(),m=document.getElementById('minimaxQuotaKey')?.value.trim();if(a)Store.setSecret('arkCodingPlanAccessKey',a);if(s)Store.setSecret('arkCodingPlanSecretKey',s);if(d)Store.setSecret('deepseekQuotaKey',d);if(m)Store.setSecret('minimaxQuotaKey',m);if(!a&&!s&&!d&&!m&&!this.keys().arkAk&&!this.keys().deepseek&&!this.keys().minimax)return UI.toast('请至少填写一组密钥');['arkCodingPlanAccessKey','arkCodingPlanSecretKey','deepseekQuotaKey','minimaxQuotaKey'].forEach(id=>document.getElementById(id).value='');this.refresh(true);},
   clearKeys(){if(!confirm('清除当前设备上保存的 API 密钥？'))return;['arkCodingPlanAccessKey','arkCodingPlanSecretKey','deepseekQuotaKey','minimaxQuotaKey'].forEach(k=>Store.setSecret(k,''));Store.set('_quotaCache',{});this.render();UI.toast('已清除 API Key');},
   fmtTime(ms){if(!ms)return '重置时间未知';const min=Math.max(0,Math.ceil(ms/60000));return min>=60?`${Math.floor(min/60)}小时${min%60}分后重置`:`${min}分钟后重置`;},
@@ -29,15 +30,15 @@ const ApiQuota = {
     const miniVal=m?`${miniPct.toFixed(0)}%`:'—';
     const miniSub=k.minimax?(m?this.fmtTime(m.reset):'等待查询'):'尚未配置 · 在设置中添加密钥';
     const ark=c.ark,arkWindow=ark?.windows?.[0],arkPct=arkWindow?Math.max(0,100-Number(arkWindow.used||0)):0,arkVal=arkWindow?`${arkPct.toFixed(0)}%`:'—',arkLabels={session:'本次会话',weekly:'本周',monthly:'本月'},arkReset=arkWindow?.reset?(arkWindow.reset<1e12?arkWindow.reset*1000:arkWindow.reset):0,arkSub=k.arkAk&&k.arkSk?(arkWindow?`${arkLabels[arkWindow.name]||arkWindow.name}${arkReset?` · ${new Date(arkReset).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})} 重置`:''}`:c.errors?.ark?`查询失败 · ${c.errors.ark}`:'等待查询'):'尚未配置 · 在设置中添加 AccessKey / SecretKey';
-    const cents=Number(c.grok?.total?.val??c.grok?.total?.value??0),grokVal=c.grok?.total?`$${(cents/100).toFixed(2)}`:'—',grokSub=c.grok?.total?`实时余额 · ${new Date(c.grok.at||c.at).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`:(c.errors?.grok||'等待查询');
-    return this.qrow(icWave,'Grok API 余额',grokVal,0,grokSub);
+    const cents=this.cents(c.grok?.total),baseline=Number(c.grok?.baseline||0),grokPct=baseline?Math.min(100,cents/baseline*100):0,grokVal=c.grok?.total?`${grokPct.toFixed(0)}%`:'—',grokSub=c.grok?.total?`剩余 $${(cents/100).toFixed(2)} · ${new Date(c.grok.at||c.at).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})} 更新`:(c.errors?.grok||'等待查询');
+    return this.qrow(icWave,'Grok API 剩余额度',grokVal,grokPct,grokSub);
   },
   render(){
     const k=this.keys(),c=Store.get('_quotaCache',{}),d=null,m=null;
     const rows=this.rowsHtml(k,c,d,m);
     const box=document.getElementById('apiQuotaRail');if(box)box.innerHTML=rows;
     const homeBox=document.getElementById('homeApiQuota');if(homeBox)homeBox.innerHTML=rows;
-    const at=c.at?new Date(c.at).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}):'';this.state(at?`上次查询：${at}。${k.arkAk&&k.arkSk?'火山方舟 Coding Plan 已配置。 ':''}${k.deepseek?'DeepSeek 已配置。 ':''}${k.minimax?'MiniMax 已配置。':''}`:'');
+    const at=c.at?new Date(c.at).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}):'';this.state(at?`上次查询：${at}。进度以首次查到或充值后的最高余额为 100%。`:'' );
   },
   state(text){const el=document.getElementById('quotaSettingsState');if(el)el.textContent=text;}
 };
