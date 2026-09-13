@@ -65,6 +65,7 @@ async function serveDashboard(request) {
 
 export default {
   async fetch(request, env) {
+    try {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: headers() });
     if (request.method === 'GET') return serveDashboard(request);
     if (request.method !== 'POST') return json({ error: 'METHOD_NOT_ALLOWED' }, 405);
@@ -88,7 +89,18 @@ export default {
       if (!raw) return null;
       try { return JSON.parse(raw); } catch { return null; }
     };
-    const put = (key, value) => env.DASHBOARD_KV.put(key, JSON.stringify(value));
+    const put = async (key, value) => {
+      try {
+        await env.DASHBOARD_KV.put(key, JSON.stringify(value));
+      } catch (e) {
+        if (/limit exceeded/i.test(String(e && e.message || e))) {
+          const err = new Error('云端同步写入额度已用完：这台设备上的记录仍安全保存，明天 08:00 后再点“立即同步”即可');
+          err.status = 429;
+          throw err;
+        }
+        throw e;
+      }
+    };
 
     const rate = (await get(kRate)) || { n: 0, until: 0 };
     const now = Date.now();
@@ -152,5 +164,8 @@ export default {
       return json({ ok: true, data: merged });
     }
     return json({ error: '未知操作' }, 400);
+    } catch (e) {
+      return json({ error: e && e.message ? e.message : '同步服务暂时不可用' }, e && e.status ? e.status : 500);
+    }
   }
 };

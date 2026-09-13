@@ -96,7 +96,7 @@ const Home = {
   async syncNow(){
     if(!Sync.on()){App.go('settings');document.getElementById('syncCard')?.scrollIntoView({block:'center'});UI.toast('请先设置双端同步账户');return;}
     const b=document.querySelector('.sync-button');if(b)b.disabled=true;
-    try{await Sync.pull(true);}finally{if(b)b.disabled=false;}
+    try{await Sync.syncNow(true);}finally{if(b)b.disabled=false;}
   },
   togglePlan(id){Plan.day=Util.today();Plan.toggle(id);this.render();},
   clearPlans(){
